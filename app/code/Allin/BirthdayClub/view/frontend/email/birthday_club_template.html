@@ -1,0 +1,19 @@
+<!--@subject Headsupfortails Birthday Club@-->
+<!--@vars {
+"var data.comment":"Comment",
+"var data.email":"Sender Email",
+"var data.name":"Sender Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<br>
+{{trans "Dear %aname" aname=$data.aname}} <br>
+You have successfully submitted your information.
+<br>
+
+Thank you for choosing Headsupfortails<br>
+
+www.headsupfortails.com <br>
+
+
+{{template config_path="design/email/footer_template"}}

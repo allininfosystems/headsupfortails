@@ -1,0 +1,238 @@
+<?php
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$storeManager=$objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+			$baseURL_l = $storeManager->getStore()->getBaseUrl();
+
+	$mediapath =  $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+			<div class="sj-pet-info" id="pet_birthday">
+				<form id="birthday-club" name="birthday-club" action="#" method="post" enctype="multipart/form-data">
+					<div class="ppi">
+						<h2><img src="<?php echo $mediapath.'wysiwyg/loving4.png'?>" alt="heart-img" class="heart-icon">Pet Parent Information</h2>
+						<input type="text" name="name" placeholder="Name*">
+						<div id="username" class="validate"></div>
+						<input type="email" name="email" placeholder="Email*">
+						<div id="useremail" class="validate"></div>
+					</div><!-- ppi -->
+
+					<div class="fpi">
+						<h2>1st Pet Information</h2>
+						<input type="text" name="pettype" placeholder="Pet Type (Dog/Cat)*">
+						<div id="1st_pettype" class="validate"></div>
+						<input type="text" name="petname" placeholder="Pet Name*">
+						<div id="1st_petname" class="validate"></div>
+						<input type="text" name="petbreed" placeholder="Pet Breed*">
+						<div id="1st_petbreed" class="validate"></div>
+						<input type="date" name="petbirthday" placeholder="Pet Birthday*">
+						<div id="1st_petbirthday" class="validate"></div>
+					</div><!-- fpi -->
+
+					<div class="spi">
+						<h2>2nd Pet Information</h2>
+						<input type="text" name="pettype1" placeholder="Pet Type (Dog/Cat)*">
+						<div id="2nd_pettype" class="validate"></div>
+						<input type="text" name="petname1" placeholder="Pet Name*">
+						<div id="2nd_petname" class="validate"></div>
+						<input type="text" name="petbreed1" placeholder="Pet Breed*">
+						<div id="2nd_petbreed" class="validate"></div>
+						<input type="date" name="petbirthday1" placeholder="Pet Birthday*">
+						<div id="2nd_petbirth" class="validate"></div>
+					</div><!-- spi -->
+
+					<div class="sj-send">
+						<input type="button" class="btn btn-success" value="Send" id="send-success">
+					</div><!-- sj-send -->
+					<span id="formLoader">&nbsp;</span>
+					<span id="successmsg">&nbsp;</span>
+				</form>
+			</div><!-- sj-pet-info -->
+
+
+
+<script>
+//========================Birthday Club======================================//
+require(['jquery'], function() {
+	jQuery(document).ready(function() {		
+	jQuery( "#send-success" ).click(function(event) {
+		 event.preventDefault();
+		 //=========================================//
+		 
+	var name = document.forms["birthday-club"]["name"].value;
+    var email = document.forms["birthday-club"]["email"].value;
+    var pettype = document.forms["birthday-club"]["pettype"].value;
+    var petname = document.forms["birthday-club"]["petname"].value;
+    var petbreed = document.forms["birthday-club"]["petbreed"].value;
+    var petbirthday = document.forms["birthday-club"]["petbirthday"].value;
+    var pettype1 = document.forms["birthday-club"]["pettype1"].value;
+    var petname1 = document.forms["birthday-club"]["petname1"].value;
+    var petbreed1 = document.forms["birthday-club"]["petbreed1"].value;
+    var petbirthday1 = document.forms["birthday-club"]["petbirthday1"].value;
+
+	if( name == "" ){
+		name = 1;
+		//alert( "Please provide your Name!" );
+		jQuery('#username').text('This is a required field.');
+		jQuery('#username').show();
+		document.forms["birthday-club"]["name"].focus() ;
+		return false;
+	}
+	else{
+		name = 0; 
+		jQuery('#username').hide();
+	}
+	if( email == "" ){
+		// alert( "Please provide your Email!" );
+		email = 1;
+		jQuery('#useremail').text('This is a required field.');
+		jQuery('#useremail').show();
+		 document.forms["birthday-club"]["email"].focus() ;
+		 return false;
+	}
+	else if(email){
+		var atpos = email.indexOf("@");
+		var dotpos = email.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+			//alert("Not a valid e-mail address");
+			jQuery('#useremail').text('Not a valid e-mail address.');
+			document.forms["birthday-club"]["email"].focus() ;
+			return false;
+    }
+    else { 
+		//alert(useremail);
+		email = 0; 
+		jQuery('#useremail').hide();
+	}}
+	if( pettype == "" ){
+		// alert( "Please enter pet type!" );
+		pettype = 1;
+		jQuery('#1st_pettype').text('This is a required field.');
+		jQuery('#1st_pettype').show();
+		document.forms["birthday-club"]["pettype"].focus() ;
+		return false;
+	}
+	else{
+		pettype = 0; 
+		jQuery('#1st_pettype').hide();
+	}
+	if( petname == "" ){
+		petname = 1;
+		jQuery('#1st_petname').text('This is a required field.');
+		jQuery('#1st_petname').show();
+		//alert( "Please provide your petname!" );
+		document.forms["birthday-club"]["petname"].focus() ;
+		return false;
+	}
+	else{
+		petname = 0; 
+		jQuery('#1st_petname').hide();
+	}
+	if( petbreed == "" ){
+		petbreed = 1;
+		jQuery('#1st_petbreed').text('This is a required field.');
+		jQuery('#1st_petbreed').show();
+		//alert( "Please provide your Pet Breed!" );
+		document.forms["birthday-club"]["petbreed"].focus() ;
+		return false;
+	}
+	else{
+		petbreed = 0; 
+		jQuery('#1st_petbreed').hide();
+	}
+	if( petbirthday == "" ){
+		petbirthday = 1;
+		jQuery('#1st_petbirthday').text('This is a required field.');
+		jQuery('#1st_petbirthday').show();
+		//alert( "Please provide your Pet Birthday!" );
+		document.forms["birthday-club"]["petbirthday"].focus() ;
+		return false;
+	}
+	else{
+		petbirthday = 0; 
+		jQuery('#1st_petbirthday').hide();
+	}
+	if( pettype1 == "" ){
+		pettype1 = 1;
+		jQuery('#2nd_pettype').text('This is a required field.');
+		jQuery('#2nd_pettype').show();
+		//alert( "Please provide your Pet type!" );
+		document.forms["birthday-club"]["pettype1"].focus() ;
+		return false;
+	}
+	else{
+		pettype1 = 0; 
+		jQuery('#2nd_pettype').hide();
+	}
+	if( petname1 == "" ){
+		petname1 = 1;
+		jQuery('#2nd_petname').text('This is a required field.');
+		jQuery('#2nd_petname').show();
+		//alert( "Please provide your Pet Name!" );
+		document.forms["birthday-club"]["petname1"].focus() ;
+		return false;
+	}
+	else{
+		petname1 = 0; 
+		jQuery('#2nd_petname').hide();
+	}
+	if( petbreed1 == "" ){
+		petbreed1 = 1;
+		jQuery('#2nd_petbreed').text('This is a required field.');
+		jQuery('#2nd_petbreed').show();
+		//alert( "Please provide your Pet Breed!" );
+		document.forms["birthday-club"]["petbreed1"].focus() ;
+		return false;
+	}
+	else{
+		petbreed1 = 0; 
+		jQuery('#2nd_petbreed').hide();
+	}
+	if( petbirthday1 == "" ){
+		petbirthday1 = 1;
+		jQuery('#2nd_petbirth').text('This is a required field.');
+		jQuery('#2nd_petbirth').show();
+		//alert( "Please provide your Pet Birthday!" );
+		document.forms["birthday-club"]["petbirthday1"].focus() ;
+		return false;
+	}
+	else{
+		petbirthday1 = 0; 
+		jQuery('#2nd_petbirth').hide();
+	}
+		 
+		 //=========================================//
+		 
+		if(1){
+			var form = jQuery('#birthday-club')[0];
+		//var data = jQuery('#career-form').serialize();
+			jQuery.ajax({
+				url:"<?php echo $this->getUrl().'birthdayclub/index/birthday';?>",
+				enctype: 'multipart/form-data',
+				type:'POST',
+				data: new FormData(form),
+				processData: false,  // Important!
+				contentType: false,
+				cache: false,
+				beforeSend:function()
+					{
+						 jQuery("#formLoader").html("<img src='<?php echo $this->getUrl()."pub/media/zipcode/loading.gif";?>'/>");
+						 jQuery("#formLoader").show();
+					},
+						success: function(response)
+					{	
+						jQuery("#formLoader").hide();
+						jQuery("#successmsg").html(response);
+						jQuery("#successmsg").show().delay(10000).fadeOut();
+						jQuery("#birthday-club")[0].reset();
+						
+						
+					}
+				});
+			}
+			else{ 
+				return false; 
+			}
+		});
+
+	});
+});
+</script>

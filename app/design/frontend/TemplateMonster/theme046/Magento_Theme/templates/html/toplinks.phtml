@@ -1,0 +1,16 @@
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();?>
+
+	
+  <?php   $customerSession = $objectManager->get('Magento\Customer\Model\Session'); ?>
+   <?php  if ($customerSession->isLoggedIn()) {?>
+   <ul class="acccontent">
+	<li><a href="<?php $this->getUrl('customer/account/create'); ?>"><?php echo __('Logout') ?></a></li>	
+   </ul><?php } else{?>
+	
+	<ul class="acccontent">
+	<li><a href="<?php echo $this->getUrl('customer/account/create'); ?>"><?php echo __('Login/Register') ?></a></li>	
+</ul> 
+<?php }?>
+
+
+

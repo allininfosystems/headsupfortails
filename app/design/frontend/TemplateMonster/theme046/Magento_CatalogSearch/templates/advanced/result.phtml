@@ -1,0 +1,103 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * @var $block \Magento\CatalogSearch\Block\Advanced\Result
+ */
+?>
+<?php if ($results = $block->getResultCount()): ?>
+    <div class="search found">
+        <?php if ($results == 1) : ?>
+            <?php /* @escapeNotVerified */ echo __('<strong>%1 item</strong> were found using the following search criteria', $results); ?>
+        <?php else: ?>
+            <?php /* @escapeNotVerified */ echo __('<strong>%1 items</strong> were found using the following search criteria', $results); ?>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+    <div class="message error">
+        <div>
+            <?php /* @escapeNotVerified */ echo __('We can\'t find any items matching these search criteria.');?> <a href="<?php /* @escapeNotVerified */ echo $block->getFormUrl(); ?>"><?php /* @escapeNotVerified */ echo __('Modify your search.'); ?></a>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php $searchCriterias = $block->getSearchCriterias(); ?>
+<div class="search summary">
+    <?php foreach (['left', 'right'] as $side): ?>
+        <?php if (@$searchCriterias[$side]): ?>
+            <ul class="items">
+                <?php foreach ($searchCriterias[$side] as $criteria): ?>
+                    <li class="item"><strong><?php echo $block->escapeHtml(__($criteria['name'])); ?>:</strong> <?php echo $block->escapeHtml($criteria['value']); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
+<?php if ($block->getResultCount()): ?>
+    <div class="message notice">
+        <div>
+            <?php /* @escapeNotVerified */ echo __("Don't see what you're looking for?"); ?>
+            <a href="<?php /* @escapeNotVerified */ echo $block->getFormUrl(); ?>"><?php /* @escapeNotVerified */ echo __('Modify your search.'); ?></a>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if ($block->getResultCount()): ?>
+    <div class="search results"><?php echo $block->getProductListHtml() ?></div>
+<?php endif; ?>
+<?php $block->getSearchCriterias(); ?>
+
+<?php
+
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();  
+ 
+$categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+$categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+$categoryRepository = $objectManager->get('\Magento\Catalog\Model\CategoryRepository');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$categoryId = 142; // YOUR CATEGORY ID
+$category = $categoryFactory->create()->load($categoryId);
+//echo $category->getName();
+$categoryProducts = $category->getProductCollection()
+                             ->addAttributeToSelect('*'); ?>
+
+<h2 class="title">Food Related Products</h2>
+ <ul class="food-related-products">
+ <?php                            
+	foreach ($categoryProducts as $product) {
+	// echo '<pre>'; print_r($product->getData());die;
+	
+			$pid = $product->getId();
+			// set image width and height
+			$imagewidth = 210;
+			$imageheight = 210;
+			$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+			$_product = $objectManager->get('Magento\Catalog\Model\Product')->load($pid);
+			$imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+$image_url = $imageHelper->init($_product, 'product_page_image_small')->setImageFile($_product->getFile())->resize($imagewidth, $imageheight)->getUrl()
+		?>	
+		<li class="product-list">	
+			<a class="product-item-link" href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+				<img src="<?php echo $image_url; ?>"/>
+			</a>
+			<strong class="product name product-item-name">
+				<a class="product-item-link" href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+					<?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+				</a>
+			</strong>
+		<?php 
+			$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); // Instance of Pricing Helper
+			$formattedPrice = $priceHelper->currency($_product->getPrice(), true, false);?>
+			<span><?php echo $formattedPrice; ?></span>
+		</li>
+	<?php }	?>
+</ul>
+	

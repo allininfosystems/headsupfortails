@@ -1,0 +1,311 @@
+/*
+* TM_Newsletter-popup
+*/
+
+// Main Styles
+
+.newsletter-popup.modal-popup {
+    color: $black;
+
+    .text-white {
+        color: $white;
+    }
+
+    .modal-title {
+        color: $black;
+    }
+
+    @media (min-width: $screen-xs-min) {
+        .newsletter-wrap {
+            position: relative;
+        }
+    }
+
+    // Modal
+    .modal-inner-wrap {
+        margin-top: 17%;
+        padding: 0 0 70px;
+        margin-right: 20px;
+        margin-left: 20px;
+        background-color: $default;
+        background-image: url(../images/newsletter-bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        max-width: 90%;
+
+        @media screen and (max-width: 499px) {
+            width: auto !important;
+        }
+        @media (min-width: 500px){
+            margin-top: 12%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    .field{
+        .control{
+            position: relative;
+
+            input{
+                min-height: 51px;
+                color: $black;
+                background: $white;
+                border-color: transparent;
+
+                &::-webkit-input-placeholder {
+                    color: $black;
+                }
+                &::-moz-placeholder {
+                    color: $black;
+                }
+                &:-ms-input-placeholder {
+                    color: $black;
+                }
+                &:-moz-placeholder {
+                    color: $black;
+                }
+            }
+
+            .mage-error:not(input):not(textarea) {
+                display: block;
+                background: #fff;
+                padding: 0 5px;
+                position: absolute;
+
+                @media (min-width: $screen-xs-min) {
+
+                    bottom: -19px;
+                    left: 0;
+                }
+            }
+
+            @media (min-width: $screen-xs-min) {
+                &:before {
+                    content: '\e0be';
+                    position: absolute;
+                    left: 21px;
+                    font-size: 16px;
+                    top: 50%;
+                    font-family: "Material Icons";
+                    pointer-events: none;
+                    height: 20px;
+                    line-height: 20px;
+                    margin-top: -10px;
+                }
+            }
+        }
+    }
+
+    .actions {
+        display: none;
+    }
+
+    // Header
+    header.modal-header {
+        padding: 30px 30px 0;
+
+        @media (min-width: $screen-sm-min){
+            padding: 70px 50px 0;
+            position: relative;
+        }
+        @media (min-width: $screen-lg-min) {
+            padding: 130px 18.5% 0;
+        }
+
+        .action-close {
+            padding: 10px;
+            top: 0;
+            right: 0;
+            &:before {
+                display: block;
+                font-size: 24px;
+                line-height: 24px;
+            }
+            &:hover:before {
+                color: $accent;
+            }
+            @media (min-width: $screen-sm-min){
+                position: absolute;
+                top: -36px;
+                right: -39px;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                padding: 0;
+                color: $white;
+                background: $primary;
+                transition: .3s all ease;
+
+                &:hover {
+                    color: $default;
+                    background: $white;
+                }
+            }
+        }
+
+        h1.modal-title {
+            font-size: 24px;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: .04em;
+            border-bottom: none;
+            text-transform: uppercase;
+            padding: 0;
+            margin-bottom: 0;
+            @media (min-width: $screen-md-min) {
+                font-size: 28px;
+            }
+            @media (min-width: $screen-lg-min) {
+                font-size: 32px;
+            }
+        }
+    }
+
+    // Content
+    .modal-content {
+        padding: 10px 30px 0;
+        position: relative;
+
+        @media (min-width: $screen-sm-min){
+            padding-top: 20px;
+        }
+        @media (min-width: $screen-lg-min) {
+            padding: 21px 18.5% 0;
+        }
+
+        .content-text{
+            padding-bottom: 5px;
+
+            @media (min-width: $screen-sm-min){
+                padding-bottom: 17px;
+            }
+
+            p{
+                line-height: 1.5;
+                margin-bottom: 0;
+            }
+        }
+
+        .block.newsletter {
+            margin: 0;
+            width: 100%;
+
+            .field{
+                padding-bottom: 0;
+
+                input {
+                    padding: 9px 25px 9px 25px;
+
+                    @media (min-width: $screen-xs-min) {
+                        padding-left: 45px;
+                        padding-right: 150px;
+                    }
+                }
+            }
+        }
+    }
+
+    // Footer
+    footer.modal-footer {
+        padding: 25px 0 0;
+
+        @media (min-width: $screen-xs-min) {
+            padding-top: 10px;
+        }
+        @media (min-width: $screen-sm-min){
+            padding-top: 0;
+        }
+
+        .modal-social {
+            text-align: center;
+            font-size: 1.75em;
+            padding: 15px 30px 10px;
+
+            a {
+                display: inline-block;
+                margin-bottom: 5px;
+                padding: 7px 8px;
+                transition: .2s;
+                width: 42px;
+                height: 42px;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+
+            :link,
+            :hover{
+                text-decoration: none;
+            }
+        }
+    }
+
+    // Buttons block
+    .buttons-container {
+        padding: 0 30px 30px;
+        text-align: center;
+
+        @media (min-width: $screen-sm-min){
+            padding-bottom: 0;
+        }
+
+        button {
+            @include button-block;
+            padding: 9px 18px;
+            box-shadow: none;
+            &:hover{
+                color: $white;
+            }
+            &.subscribe{
+                @include button-block__primary;
+                text-transform: uppercase;
+                letter-spacing: .06em;
+                position: absolute;
+                bottom: 5px;
+                right: 36px;
+                z-index: 9;
+                padding: 10.5px 19px;
+                color: $white;
+                border: none;
+                @media (max-width: $screen-xs-min - 1) {
+                    &:before {
+                        content: '\e834';
+                        font-family: $default-icon-family;
+                    }
+                    span {
+                        display: none;
+                    }
+                }
+
+                @media (min-width: $screen-sm-min) {
+                    bottom: 5px;
+                }
+                @media (min-width: $screen-md-min) {
+                    bottom: 5px;
+                }
+                @media (min-width: $screen-lg-min) {
+                    right: calc(18.5% + 5px);
+                    padding: 10.5px 19px;
+                }
+            }
+
+            &:not(.subscribe) {
+                display: none;
+            }
+        }
+        button + button {
+            margin-left: 10px;
+        }
+    }
+}
+
+body .modal-slide._show, body .modal-popup._show {
+    background: rgba($text-dark, .9);
+    transition: .3s all ease;
+}
+
+body .sidebar aside.modal-slide._show, body .sidebar aside.modal-popup._show {
+    background: transparent;
+}

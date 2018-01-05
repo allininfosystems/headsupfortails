@@ -1,0 +1,187 @@
+
+
+/**************************30/12 shi*************************************/
+.filter-options[role="tablist"] .filter-options-title[role="tab"]{ background: #f59353 !important;color: #fff !important;}
+.filter-options[role="tablist"] .filter-options-title[role="tab"]:before{color: #fff !important;}
+.select2-container--default .select2-selection--single{ background-color: #f59353 !important;border: 1px solid #f59353!important;}
+.select2-container--default .select2-selection--single .select2-selection__rendered{ color: #fff !important; font-weight: 600; }
+.field.choice.related span{  background: #f59353;padding: 8px 14px; width: auto;border-radius: 5px; }
+.field.choice.related span:hover{ background: #000; }
+.catalog-product-view .towishlist:before, .catalog-product-view .tocompare:before{ display: none; }
+.select2-container--default .select2-selection--single .select2-selection__arrow b::before{ color: #fff;}
+.catalog-product-view .field.choice.related span{  }
+
+/*****************About-Us*******************/
+.cms-about-us .inner-pages-content.about-page ul.tabs li.current{background: #f59353!important;}
+.cms-about-us .inner-pages-content.about-page ul.tabs{ border-bottom: solid #f59353 3px; }
+.cms-about-us .about-content span, .cms-about-us .abt-text span, .cms-about-us .journey-heading h2, .cms-about-us .culture-textLeft .like-people strong{ color:#f59353 !important;}
+.cms-about-us .our-purpose h1, .cms-about-us .our-mission h1, .cms-about-us .our-vision h1{ color:#f59353 !important; border-bottom: dashed #f59353 2px;}
+.cms-about-us .culture-textRight h3, .cms-about-us .culture-textLeft .work-people strong, .cms-about-us .culture-textLeft .ethics-igp strong, .cms-about-us .feyfnctn-igp h3{ color:#f59353 !important; }
+.cms-about-us .functn-Text, .cms-about-us .posting-btn a{ background: #f59353!important; }
+.cms-about-us .posting-btn a:hover{background: #333 !important;}
+
+/*****************FaQ-page*************/
+.cms-faq #faq-accordion ul.tabs li a{color: #000;}
+.cms-faq #faq-accordion ul.tabs li.current a{color: #fff;}
+
+
+
+
+@media (max-width: 479px) and (min-width: 320px){
+/****************Start****************/
+.breadcrumbs{ margin-top: 20%; }
+.page-main{ margin-top: 0;}
+.catalog-category-view .category-description h1{font-size: 22px; line-height:24px;}
+.products-grid .product-item .product-item-info .timer-wrapper{left: 15px;top: -704px !important;}
+
+.catalog-product-view .product-info-main{ margin-left: 0; }
+.catalog-product-view .product-reviews-summary{ margin: 20px auto 0; }
+.catalog-product-view #maincontent .block.related{ margin-top: 10px; }
+.catalog-product-view .block.related .block-actions button.action.select{ margin-right:0; }
+.catalog-product-view .block.related .block-actions button.action.select {margin: 10px auto;}
+.catalog-product-view .product-info-main .overview{ margin-bottom: 8px; }
+.product.attribute.description .value p{ margin-bottom: 0; }
+.catalog-product-view .product-info-main{ padding-left: 0; }
+
+
+/***Career****/
+.career_headsup{ width: 100%; }
+form#career-form{ width: 100%; }
+.form-group.field-apply{ margin-top: 20px; }
+.career_headsup p{ font-size: 13px; }
+
+/*******birthday-club********/
+.cms-birthday-club .column.main p img{margin: 20px 0 10px !important;}
+.cms-birthday-club .sj-bithday-merchandise{ width: 100%;}
+.cms-birthday-club .sj-bithday-merchandise ul li{ width: 50%; }
+.cms-birthday-club .sj-pet-info{width: 100%;}
+
+.category-birthday-club .column.main p img{margin: 20px 0 10px !important;}
+.category-birthday-club .sj-bithday-merchandise{ width: 100%;}
+.category-birthday-club .sj-bithday-merchandise ul li{ width: 50%; }
+.category-birthday-club .sj-pet-info{width: 100%;}
+
+
+/************END***********/
+}
+
+@media (max-width:599px) and (min-width: 480px){
+/****************Start****************/
+.breadcrumbs{ margin-top: 18%; }
+.page-main{ margin-top: 0;}
+.catalog-category-view .category-description h1{font-size: 22px; line-height:24px;}
+.products-grid .product-item .product-item-info .timer-wrapper{left: 15px;top: -704px !important;}
+
+
+/*******birthday-club********/
+.cms-birthday-club .column.main p img{margin: 20px 0 10px !important;}
+.cms-birthday-club .sj-bithday-merchandise{ width: 100%;}
+.cms-birthday-club .sj-pet-info{width: 100%;}
+
+.category-birthday-club .column.main p img{margin: 20px 0 10px !important;}
+.category-birthday-club .sj-bithday-merchandise{ width: 100%;}
+.category-birthday-club .sj-pet-info{width: 100%;}
+/************END***********/
+}
+
+@media (max-width:767px) and (min-width: 600px){
+/****************Start****************/
+
+/*******birthday-club********/
+.cms-birthday-club .sj-bithday-merchandise ul li p{ font-size: 12px; }
+.cms-birthday-club h2{ font-size: 14px;}
+.cms-birthday-club .sj-bithday-merchandise ul li{ min-height: 178px; }
+
+
+.category-birthday-club .sj-bithday-merchandise ul li p{ font-size: 12px; }
+.category-birthday-club h2{ font-size: 14px;}
+.category-birthday-club .sj-bithday-merchandise ul li{ min-height: 178px; }
+/***Career****/
+.breadcrumbs{ margin: 11% auto 0;}
+
+
+/************END***********/
+}
+
+@media (max-width:899px) and (min-width: 768px){
+/****************Start****************/
+
+/*******birthday-club********/
+.cms-birthday-club .sj-bithday-merchandise ul li{ min-height: 225px; }
+
+/************END***********/
+}
+
+
+#show-more-less{background: #f59353;  padding: 5px 10px; color: #fff; font-weight: 600; margin: 0 auto; display: inherit;}
+
+
+
+/********************birthday-club*******************/
+.cms-birthday-club .owl-carousel{ margin-bottom: 60px; }
+.cms-birthday-club .owl-theme .owl-controls{ position: absolute;top: 43%;width: 100%;} 
+.cms-birthday-club .owl-theme .owl-controls .owl-buttons .owl-next{background-color: #000000eb;float: right;font-size: 0;width: 32px;height: 32px;line-height: 25px;}
+.cms-birthday-club .owl-theme .owl-controls .owl-buttons .owl-next:before{ content: "\f105";font-family: FontAwesome;font-size: 25px;}
+.cms-birthday-club .owl-theme .owl-controls .owl-buttons .owl-prev{background-color: #000000eb;float: left;font-size: 0;width: 32px;height: 32px;line-height: 25px;}
+.cms-birthday-club .owl-theme .owl-controls .owl-buttons .owl-prev:before{ content: "\f104";font-family: FontAwesome;font-size: 25px; }
+.cms-birthday-club .column.main p a.buttonpink{ width: 260px;text-align: center;cursor: pointer;background-color: #f59353 !important;border-bottom: #e84b95 5px solid!important;margin: 0 auto;color: #fff;padding: 10px 30px;font-size: 20px;}
+.cms-birthday-club .sj-pet-info form .sj-send{width: auto;background: #f59353; color: #fff; text-align: center;display: inline-block;}
+.cms-birthday-club .sj-pet-info form .sj-send input#send-success{text-transform: uppercase;font-size: 20px;width: 170px;height: 50px;margin: 0;}
+.cms-birthday-club .sj-bithday-merchandise ul li p{text-align: center !important;margin-top: 10px;}
+.cms-birthday-club h2{ font-size: 18px;line-height: 25px;}
+.cms-birthday-club .sj-bithday-merchandise ul li{ padding: 10px 10px 0; }
+.cms-birthday-club .sj-pet-info form {padding: 20px 20px;}
+.cms-birthday-club .sj-pet-info form input[type="date"]{padding: 11px;width: 100%;color: #505050;background: #f0f1f2;border: 1px solid #dfe4eb;}
+.cms-birthday-club .sj-pet-info form .validate{ color: red;}
+.cms-birthday-club img.heart-icon {margin-right: 8px;}
+.cms-birthday-club .sj-pet-info #successmsg{font-size: 16px;text-align: center;width: 100%;float: left;padding: 10px;}
+
+
+
+
+/********************birthday-club Category*******************/
+.category-birthday-club .owl-carousel{ margin-bottom: 60px; }
+.category-birthday-club .owl-theme .owl-controls{ position: absolute;top: 43%;width: 100%;} 
+.category-birthday-club .owl-theme .owl-controls .owl-buttons .owl-next{background-color: #000000eb;float: right;font-size: 0;width: 32px;height: 32px;line-height: 25px;}
+.category-birthday-club .owl-theme .owl-controls .owl-buttons .owl-next:before{ content: "\f105";font-family: FontAwesome;font-size: 25px;}
+.category-birthday-club .owl-theme .owl-controls .owl-buttons .owl-prev{background-color: #000000eb;float: left;font-size: 0;width: 32px;height: 32px;line-height: 25px;}
+.category-birthday-club .owl-theme .owl-controls .owl-buttons .owl-prev:before{ content: "\f104";font-family: FontAwesome;font-size: 25px; }
+.category-birthday-club .column.main p a.buttonpink{ width: 260px;text-align: center;cursor: pointer;background-color: #f59353 !important;border-bottom: #e84b95 5px solid!important;margin: 0 auto;color: #fff;padding: 10px 30px;font-size: 20px;}
+v .sj-pet-info form .sj-send{width: auto;background: #f59353; color: #fff; text-align: center;display: inline-block;}
+.category-birthday-club .sj-pet-info form .sj-send input#send-success{text-transform: uppercase;font-size: 20px;width: 170px;height: 50px;margin: 0;}
+.category-birthday-club .sj-bithday-merchandise ul li p{text-align: center !important;margin-top: 10px;}
+.category-birthday-club h2{ font-size: 18px;line-height: 25px;}
+.category-birthday-club .sj-bithday-merchandise ul li{ padding: 10px 10px 0; }
+.category-birthday-club .sj-pet-info form {padding: 20px 20px;}
+.category-birthday-club .sj-pet-info form input[type="date"]{padding: 11px;width: 100%;color: #505050;background: #f0f1f2;border: 1px solid #dfe4eb;}
+.category-birthday-club .sj-pet-info form .validate{ color: red;}
+.category-birthday-club img.heart-icon {margin-right: 8px;}
+.category-birthday-club .sj-pet-info #successmsg{font-size: 16px;text-align: center;width: 100%;float: left;padding: 10px;}
+.category-birthday-club .col-md-9.col-xl-10.grid-main {width: 100%; display: block; flex-basis: 100%!important; max-width: 100%!important;}
+.category-birthday-club .owl-carousel .owl-item img {width: 100%!important;  margin:0 auto;    max-height: 100%!important;}
+.category-birthday-club h1.page-title span.base{ display: none; }
+.category-birthday-club .category-cms{ margin-top: 0; }
+.category-birthday-club .sj-pet-info form .sj-send{width: auto;background: #f59353;color: #fff;text-align: center;display: inline-block;}
+
+
+
+/***********************************press-releases-content_page****************************************/
+.expert-247 p > span{ color: #f59353 !important; }
+.cw-help-mid{ background: #f59353 !important; }
+.press-releases-content{ width: 100%; float: left; }
+.press-releases-content .banner-img{position: relative;}
+.press-releases-content .banner-img h2{position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);color: #fff; font-size: 29px; font-weight: 600; border-bottom: 1px solid #fff;border-top: 1px solid #fff; padding: 15px;}
+.press-releases-content .banner{margin-top: 15px;}
+.press-releases-content .below-banner .below-banner-content{ width: 100%; float: left; }
+.press-releases-content .below-banner .below-banner-content .bgp{line-height: 30px;text-align: center;padding: 40px 0 20px;margin: 0 auto;max-width: 800px;width: 100%;}
+.press-releases-content .post-content{width: 100%;float: none;max-width: 1285px;margin: 45px auto;}
+.press-releases-content .post-content .post-img{width: 28%;display: inline-block;margin-right: 15px;}
+.press-releases-content .post-content .post-img img{width: auto;margin: 0 auto;}
+.press-releases-content .post-content .post-detail{width: 70%;float: right;padding: 20px 10px;}
+.press-releases-content .post-content .post-detail h3.topic-head{margin-bottom: 15px;width: 100%;float: left;font-size: 20px;color: #505050;font-weight: 700;font-family: 'GothamBook' !important;}
+.press-releases-content .post-content .post-detail p.topic-posted{float: left;width: 100%;border-bottom: 1px solid #f59353;padding: 0 0 12px;margin-bottom: 5px;font-size: 15px;color: #211f1f;font-family: 'GothamBook' !important;}
+.press-releases-content .post-content .post-detail p.topic-posted-detail{line-height: 22px; width: 100%; float: left; font-size: 13px; color: #211f1f; font-weight: 400;}
+.press-releases-content .post-content .post-detail p.read-more{ width: 100%;float: left;}
+.press-releases-content .post-content .post-detail p.read-more button.button-read-more{ background: #f59353;padding: 2px 0;border-radius: 6px;border-radius: 6px;}
+.press-releases-content .post-content .post-detail p.read-more button.button-read-more a{ color: #fff !important; font-size: 14px;padding: 2px 10px;display: block;}
+.press-releases-content .post-content .post-detail p.read-more button.button-read-more a:hover{ color: #333 !important; }

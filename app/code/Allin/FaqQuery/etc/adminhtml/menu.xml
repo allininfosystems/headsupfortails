@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Allin_FaqQuery::parent" title="FaqQuery" module="Allin_FaqQuery" sortOrder="100" resource="Allin_FaqQuery::parent"/>
+		<add id="Allin_FaqQuery::faqquery" title="Manage FaqQuery" module="Allin_FaqQuery" sortOrder="20" parent="Allin_FaqQuery::parent" action="faqquery/faqquery" resource="Allin_FaqQuery::faqquery"/>
+
+    </menu>
+</config>

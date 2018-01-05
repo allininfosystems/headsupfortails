@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Allin_BirthdayClub::parent" title="BirthdayClub" module="Allin_BirthdayClub" sortOrder="100" resource="Allin_BirthdayClub::parent"/>
+		<add id="Allin_BirthdayClub::birthdayclub" title="Manage BirthdayClub" module="Allin_BirthdayClub" sortOrder="20" parent="Allin_BirthdayClub::parent" action="birthdayclub/birthdayclub" resource="Allin_BirthdayClub::birthdayclub"/>
+
+    </menu>
+</config>

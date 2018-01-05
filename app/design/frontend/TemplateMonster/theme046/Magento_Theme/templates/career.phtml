@@ -1,0 +1,121 @@
+<?php $objectManager= \Magento\Framework\App\ObjectManager::getInstance();
+		$storeManager=$objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+		$baseURL_l = $storeManager->getStore()->getBaseUrl();?>
+
+<form id="career-form" name="career-form" action="#" method="post" enctype="multipart/form-data">
+	<div class="rendered-form">
+		<div class="form-group field-name">
+			<label for="name" class="fb-text-label">Name<span class="fb-required">*</span></label>
+			<input type="text" placeholder="enter your name" class="form-control" name="name" id="name" required="required" aria-required="true">
+		</div>
+		<div class="form-group field-email">
+			<label for="mail" class="fb-text-label">E-mail<span class="fb-required">*</span></label>
+			<input type="email" placeholder="enter your Email"id="mail" name="email" class="form-control" required="required" aria-required="true"/>
+		</div>
+		<div class="form-group field-mobile">
+			<label for="mobile" class="fb-text-label">Mobile Number<span class="fb-required">*</span></label>
+			<input type="text" placeholder="Enter your Mobile Number" class="form-control" name="mobile" maxlength="10" id="mobile" required="required" aria-required="true">
+		</div>
+		<div class="form-group field-applied">
+			<label for="applied" class="fb-text-label">Applied For<span class="fb-required">*</span></label>
+			<input type="text" class="form-control" name="applied" id="applied" required="required" aria-required="true">
+		</div>
+		<div class="form-group field-intro">
+			<label for="intro" class="fb-textarea-label">Short Introduction</label>
+			<textarea type="textarea" class="form-control" name="intro" rows="5" id="intro"></textarea>
+		</div>
+		<div class="form-group field-resume">
+			<label for="resume" class="fb-file-label">Upload Resume<span class="fb-required">*</span></label>
+			<input type="file" class="form-control" name="resume" id="resume" required="required" aria-required="true">
+		</div>
+		<div class="form-group field-apply">
+			<?php /* ?><button type="button" class="btn btn-success" name="submit" id="apply-success">Button</button><?php */ ?>
+			<input type="button" class="btn btn-success" value="submit comment" id="apply-success"/>
+		</div>
+		<span id="formLoader">&nbsp;</span>
+		<span id="successmsg">&nbsp;</span>
+	</div>
+</form>
+<script>
+//========================Comment Form======================================//
+require(['jquery'], function() {
+	jQuery(document).ready(function() {		
+	jQuery( "#apply-success" ).click(function(event) {
+		 event.preventDefault();
+		 //=========================================//
+		 
+	var x = document.forms["career-form"]["name"].value;
+    var x1 = document.forms["career-form"]["mobile"].value;
+    var x2 = document.forms["career-form"]["applied"].value;
+    var x3 = document.forms["career-form"]["email"].value;
+    var x4 = document.forms["career-form"]["intro"].value;
+
+	if( x == "" ){
+		 alert( "Please provide your Name!" );
+		 document.forms["career-form"]["name"].focus() ;
+		 return false;
+	}if( x3 == "" ){
+		 alert( "Please provide your Email!" );
+		 document.forms["career-form"]["email"].focus() ;
+		 return false;
+	}else if(x3){
+		var atpos = x3.indexOf("@");
+		var dotpos = x3.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x3.length) {
+			alert("Not a valid e-mail address");
+			document.forms["career-form"]["email"].focus() ;
+			return false;
+    }
+	}if( x1 == "" ){
+		 alert( "Please provide your Phone!" );
+		 document.forms["career-form"]["mobile"].focus() ;
+		 return false;
+	}else if((isNaN(x1)) || (x1.length < 10)){
+		alert("Please enter valid Phone");
+		document.forms["career-form"]["mobile"].focus() ;
+        return false;
+	}if( x2 == "" ){
+		 alert( "Please provide your Position!" );
+		 document.forms["career-form"]["applied"].focus() ;
+		 return false;
+	}if( x4 == "" ){
+		 alert( "Please provide your Short Introduction!" );
+		 document.forms["career-form"]["intro"].focus() ;
+		 return false;
+	}
+		 
+		 //=========================================//
+		 
+		if(1){
+			var form = jQuery('#career-form')[0];
+		//var data = jQuery('#career-form').serialize();
+			jQuery.ajax({
+				url:"<?php echo $this->getUrl().'video/index/career';?>",
+				enctype: 'multipart/form-data',
+				type:'POST',
+				data: new FormData(form),
+				processData: false,  // Important!
+				contentType: false,
+				cache: false,
+				beforeSend:function()
+				{
+					 jQuery("#formLoader").html("<img src='http://119.82.68.254/headsupfourtails/pub/media/zipcode/loading.gif'/>");
+					 jQuery("#formLoader").show();
+				},
+					success: function(response)
+				{	
+					jQuery("#formLoader").hide();
+					jQuery("#successmsg").html(response);
+					jQuery("#successmsg").show().delay(5000).fadeOut();
+					jQuery("#career-form")[0].reset();
+					
+					
+				}
+			});
+		}else{ return false; }
+		});
+
+	});
+});
+</script>
+

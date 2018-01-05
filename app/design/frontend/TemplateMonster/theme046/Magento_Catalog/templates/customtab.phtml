@@ -1,0 +1,7 @@
+<?php 
+$_product = $block->getProduct(); //get product object
+$attribute_code="customtab"; // attribute with text value
+$description_attribute = $_product->getResource()->getAttribute($attribute_code);
+$description_attribute_value = $description_attribute->getFrontend()->getValue($_product);
+echo $description_attribute_value;
+?>

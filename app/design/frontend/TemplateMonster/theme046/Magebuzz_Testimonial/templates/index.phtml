@@ -1,0 +1,49 @@
+<?php
+$gridRecords = $block->getCollection();
+?>
+<div class="magebuzz-testimonial-content">
+    <?php if ($gridRecords && count($gridRecords)): ?>
+
+        <?php  $i=0; foreach ($gridRecords as $record): ?>
+         <?php if($i%2==0){  $class="left"; }else{  $class="right"; } ?>
+            <div class="testimonial-row <?php echo $class; ?>">
+                <div class="testimonial-author-img">
+                    <a href="">
+                        <?php echo $block->getImage($record['avatar']); ?>
+                    </a>
+                    <div class="author">
+                        <?php echo $record['name']; ?>
+                    </div>
+                </div>
+                <div class="testimonial-right">
+                    <div class="content">
+                        <?php /* <div class="date">
+                            <?php echo $record['created_time'] ?>
+                        </div> */ ?>
+                        <?php echo $record['testimonial'] ?>
+                    </div>
+                    <div class="footer">
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        <?php $i++;endforeach; ?>
+    <?php else : ?>
+        <div class="message info empty">
+        <span>
+            <?php echo __('Testimonial records not available.'); ?>
+        </span>
+        </div>
+    <?php endif ?>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="magebuzz-testimonial-toolbar toolbar bottom">
+            <?php echo $block->getPagerHtml(); ?>
+        </div>
+    <?php endif ?>
+    <div class="magebuzz-testimonial-new-button-container">
+        <a href="<?php echo $block->getNewUrl(); ?>" title="<?php echo __('Submit Your Testimonial'); ?>">
+            <button class="action primary"><span><?php echo __('Submit Your Testimonial'); ?></span></button>
+        </a>
+    </div>
+
+</div>

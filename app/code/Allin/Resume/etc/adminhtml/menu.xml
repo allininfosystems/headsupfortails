@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Allin_Resume::parent" title="Resume" module="Allin_Resume" sortOrder="100" resource="Allin_Resume::parent"/>
+		<add id="Allin_Resume::jobresume" title="Manage Resume" module="Allin_Resume" sortOrder="20" parent="Allin_Resume::parent" action="resume/jobresume" resource="Allin_Resume::jobresume"/>
+
+    </menu>
+</config>

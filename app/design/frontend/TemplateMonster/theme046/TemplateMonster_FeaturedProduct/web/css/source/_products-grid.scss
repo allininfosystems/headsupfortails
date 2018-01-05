@@ -1,0 +1,169 @@
+/*
+ * 	Featured Product by TemplateMonster 2016
+ *	v1.0.0
+ */
+
+
+/* Main Styles */
+
+.block.widget.featured {
+    .products-grid .product-items{
+        .product-item-photo {
+            display: block;
+            text-align: center;
+        }
+    }
+
+    .block-content .products-grid .product-items {
+        margin:0 -15px;
+
+        .product-item {
+            margin-left: 0;
+            margin-right: 0;
+            padding:10px 15px;
+        }
+    }
+}
+
+
+// Carousel and Tabs
+.block.featured {
+
+    overflow: hidden;
+    .block-content .products-grid {
+        &.is-carousel {
+            margin: 0 -15px;
+        }
+        .product-items.owl-carousel{
+            margin: 0;
+
+            .owl-wrapper-outer {
+                padding: 10px 0 0;
+            }
+            .owl-stage {
+                @include make-flex;
+                @include align-items(stretch);
+                margin-top: -1px;
+                .product-item {
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    &[role="tablist"]{
+        .block-title{
+            display: inline-block;
+            width: auto;
+            margin-right: 15px;
+
+            strong {
+                margin-bottom: 0;
+                cursor: pointer;
+            }
+
+            &:before {
+                display: none;
+            }
+            &:after {
+
+            }
+
+            &.active {
+                strong {
+                    color: #ccc;
+                }
+            }
+        }
+        .block-content {
+          float: right;
+          margin-left: -100%;
+          padding: 3rem 0 0;
+          width: 100%;
+        }
+
+        @media (max-width: 767px) {
+            .block-title {
+                display: block;
+                width: 100%;
+            }
+            .block-content {
+                float: none;
+                margin-left: 0;
+            }
+        }
+    }
+
+
+    [role="tablist"]{
+        text-align: center;
+
+        .category-title{
+            display: inline-block;
+            width: auto;
+            padding: 0;
+            margin:0 0 20px;
+            position: relative;
+
+            strong {
+                margin-bottom: 0;
+                margin-left: 10px;
+                margin-right: 10px;
+                cursor: pointer;
+                font-size: 16px;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                position: relative;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: -4px;
+                    left: 50%;
+                    width: 0;
+                    height: 3px;
+                    background: $primary;
+                    transition: .3s;
+                }
+            }
+            &:before {
+                display: none;
+            }
+
+
+
+            &.active {
+                strong:after {
+                    position: absolute;
+                    bottom: -4px;
+                    height: 3px;
+                    left: 0;
+                    width: 100%;
+                }
+            }
+            &:hover {
+                color: $accent;
+            }
+        }
+        .category-content {
+            text-align: left;
+            float: right;
+            margin-left: -100%;
+            padding: 70px 0 0;
+            width: 100%;
+        }
+
+        @media (max-width: 767px) {
+            .category-title {
+                display: block;
+                width: 100%;
+
+            }
+            .category-content{
+                float: none;
+                margin-left: 0;
+                padding-top: 20px;
+            }
+        }
+    }
+}

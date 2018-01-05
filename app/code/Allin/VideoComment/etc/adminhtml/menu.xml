@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+      <!--   <add id="Allin_VideoComment::parent" title="VideoComment" module="Allin_VideoComment" sortOrder="100" resource="Allin_VideoComment::parent"/>
+		<add id="Allin_VideoComment::videocomment" title="Allin VideoComment" module="Allin_VideoComment" sortOrder="20" parent="Allin_VideoComment::parent" action="videocomment/videocomment" resource="Allin_VideoComment::videocomment"/>
+ -->
+    </menu>
+</config>

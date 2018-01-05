@@ -1,0 +1,150 @@
+<?php
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+		$catId = $category->getId();
+        $subcategory = $objectManager->create('Magento\Catalog\Model\Category')->load($catId);           
+        $subcats = $subcategory->getChildrenCategories();
+		$_outputhelper = $this->helper('\Magento\Catalog\Helper\Category');
+		//$_outputhelper = $helperFactory->helper('Magento\Catalog\Helper\Output');
+		
+		$count_subchid = count($subcats);
+
+		if($count_subchid != 0){
+        ?>
+       
+	   <?php 
+			   $level3Categories = array();
+			   $i=0;
+			   foreach ($subcats as $subcat) {
+						$_subsubcategory = $objectManager->create('Magento\Catalog\Model\Category')->load($subcat->getId());
+						$_subsubcategories = $_subsubcategory->getChildrenCategories();	
+						
+						
+							if($_subsubcategory->getLevel()==3){
+								foreach($_subsubcategories as $_subsubcategory){
+									
+									$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+									$connection = $resource->getConnection();
+									$tableName = $resource->getTableName('catalog_category_entity_varchar');
+
+									//Select Data from table					
+									$sql = "Select `value` FROM " . $tableName." WHERE `entity_id`=".$_subsubcategory->getId()." and attribute_id=147";
+									$result = $connection->fetchOne($sql);
+									if(!empty($result)){
+											 $subcat_img1 = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+											->getStore()
+											->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'catalog/category/'.$result;
+											
+									}else{
+										$subcat_img1 = "http://119.82.68.254/headsupfourtails/pub/media/theme_options/default/logo-new.png";
+									}
+									
+									$level3Categories[$i]['id'] = $_subsubcategory->getId();
+									$level3Categories[$i]['image'] = $subcat_img1;
+									$level3Categories[$i]['name'] = $_subsubcategory->getName();;
+									$i++;
+								}
+							}
+						
+			   }
+			 //  echo '<pre>';print_r($level3Categories);//die;
+			   
+			   
+	   ?>
+	   <?php if(!empty($level3Categories) && is_array($level3Categories)){ ?>
+			<ul class="subcategory groupdrop-link">
+
+				<?php foreach($level3Categories as $level2subcat){?>
+					<li>
+						<a href="<?php echo $_subsubcategory->getUrl(); ?>"><img src="<?php echo $level2subcat['image'];?>"/></a>
+						<?php echo $level2subcat['name'];?>
+					</li>
+				<?php }	 ?>
+			</ul>
+		   
+       
+		
+		<?php } } ?>
+		
+		
+		 <ul class="subcategory">
+            <?php
+            foreach ($subcats as $subcat) {
+                     if ($subcat->getIsActive()) {
+					
+									$_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
+									$subcat_url = $subcat->getUrl();
+									$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+									$base_url = $storeManager->getStore()->getBaseUrl();
+									$placeholder_img = $base_url."media/theme_options/default/logo-new.png";
+									
+					
+                    ?>
+					<?php
+					 $parentCategoryId = $subcat ->getId(); //will give current categeory id;
+                    $categories = $objectManager->create('Magento\Catalog\Model\Category')->load($parentCategoryId)->getChildren();                   
+					  if($subcat->getLevel()==4 ||  (empty($categories))){
+					                $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+									$connection = $resource->getConnection();
+									$tableName = $resource->getTableName('catalog_category_entity_varchar');
+													
+									 $sql = "Select `value` FROM " . $tableName." WHERE `entity_id`=".$subcat->getId()." and attribute_id=147";
+									 $result = $connection->fetchOne($sql);
+									?>
+							<?php if(!empty($result))
+								
+										
+										/* Get base url with index When index.php enable at Url */
+										
+										
+
+									{
+										 $subcat_img = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+										->getStore()
+										->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'catalog/category/'.$result;
+									}else{
+										
+										$subcat_img= "http://119.82.68.254/headsupfourtails/pub/media/theme_options/default/logo-new.png";
+									
+									}
+								
+							  ?>
+                          <ul class="subcategory">
+
+					<li><a href="<?php echo $subcat_url; ?>"><img src="<?php echo  $subcat_img; ?>" /></a>
+                        <span>
+                            <a href="<?php echo $subcat_url; ?>">
+                                <?php echo $subcat->getName(); ?>
+                            </a>
+                        </span>
+                    </li> 
+					</ul>
+					
+					  <?php }
+					
+                }
+            }
+            ?>
+        </ul>
+		
+<script type="text/javascript">
+    require(['jquery', 'OwlCarousel'], function () {
+        jQuery(document).ready(function () {
+            jQuery(".subcategory").owlCarousel({
+                
+				
+				items: 5,
+                    itemsDesktop: [1367, 4],
+                    itemsDesktopSmall: [1024, 3],
+                    itemsTablet: [768, 2],
+                    itemsTabletSmall: [479, 1],
+                    pagination: false,
+                 
+                    navigation: true,
+				
+            });
+        });
+    });
+</script>
+
+		

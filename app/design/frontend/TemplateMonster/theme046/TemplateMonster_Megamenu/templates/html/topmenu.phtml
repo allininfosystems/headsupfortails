@@ -1,0 +1,90 @@
+<style>
+.rd-navbar-static #progressbar {
+height: 5px;
+    position: fixed;
+    top: 55px;
+    background: #3a3a3a;
+    left: 0px;
+    border-radius: 10px;
+
+}
+
+#progressbar {
+height: 5px;
+    position: fixed;
+    top: 55px;
+    background: #3a3a3a;
+    left: 0px;
+    border-radius: 10px;
+}
+
+
+
+</style>
+
+
+<div class="rd-navbar-panel-canvas"></div>
+
+<?php if ($this->getNameInLayout() == 'catalog.topnav' && (!$this->_helper->isVertical())): ?>
+    <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+    <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+    
+    <nav class="navigation" role="navigation">
+        <div class="container">
+            <!-- RD Navbar Toggle -->
+            <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+            <!-- END RD Navbar Toggle -->
+            <div class="rd-navbar-nav-wrap">
+                <ul class="rd-navbar-nav">
+                    <?php echo $_menu; ?>					
+                </ul>
+				
+            </div>
+        </div>
+    </nav>
+
+
+
+<?php elseif($this->getNameInLayout() == 'catalog.sidebarnav' && $this->_helper->isVertical()): ?>
+    <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+    <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+
+    <!-- Sidebar Nav -->
+    <nav class="navigation" >
+        <!-- RD Navbar Toggle -->
+        <ul data-mage-init='{"megamenu":{"menus": "li > ul:not(.mm-submenu), .megamenu-wrapper", "responsive":true, "expanded":true, "position":{"my":"left top","at":"right top"}}}'>
+            <?php echo $_menu; ?>
+        </ul>
+		<?php //echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('headermenulink')->toHtml();?>
+    </nav>
+
+<?php endif; ?>
+
+<div id="progressbar" value="0" max="100"></div>
+
+		
+		<script type="text/javascript">
+		 require(['jquery'], function () {
+			 			 
+			 jQuery(document).ready(function () {
+				
+					jQuery(window).scroll(function () {
+					  var s = jQuery(window).scrollTop(),
+							d = jQuery(document).height(),
+							c = jQuery(window).height();
+							scrollPercent = (s / (d-c)) * 100;
+							var position = scrollPercent;
+
+					   //$("#progressbar").attr('value', position);
+					   jQuery("#progressbar").css('width', position+'%');
+
+					});
+                
+            });
+ 
+
+		});
+			
+			
+				
+	</script>

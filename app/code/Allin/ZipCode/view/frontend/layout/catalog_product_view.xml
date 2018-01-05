@@ -1,0 +1,9 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+
+    <body>
+       <referenceContainer name="content">
+            <block class="Allin\ZipCode\Block\Index\Index" name="zipcode_index_index" template="Allin_ZipCode::zipcode_index_index.phtml" after="product-info-price"/>
+        </referenceContainer>
+
+    </body>
+</page>

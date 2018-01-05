@@ -1,0 +1,385 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+?>
+
+
+<?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
+<?php if ($block->isHomePage()):?>
+    <strong class="logo">
+<?php else: ?>
+    <a class="logo" href="<?php echo $block->getUrl(''); ?>" title="<?php echo $storeName ?>">
+<?php endif ?>
+        <img src="<?php echo $block->getLogoSrc() ?>"
+             alt="<?php echo $block->getLogoAlt() ?>"
+             <?php echo $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+             <?php echo $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+        />
+<?php if ($block->isHomePage()):?>
+    </strong>
+<?php else:?>
+    </a>
+<?php endif?>
+
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=1336483029802737';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+-->
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a4219ef9de357a6"></script>
+
+
+<script type="text/javascript">
+
+require(['jquery'], function () {
+jQuery(document).ready(function(){
+		jQuery(".block.related").insertAfter(".product-info-main");
+	});
+});
+</script>
+<script type="text/javascript">
+    require(['jquery', 'OwlCarousel'], function () {
+        jQuery(document).ready(function () {
+            jQuery(".team-slider").owlCarousel({
+				items: 4,
+                itemsDesktop: [1367, 4],
+                itemsDesktopSmall: [1024, 3],
+                itemsTablet: [768, 2],
+                itemsTabletSmall: [479, 1],
+                pagination: false,
+				nav:true,
+				autoplay:true,
+				loop:true,
+                navigation:true
+				
+            });
+        });
+		});
+
+		//jQuery(".category-image").insertAfter("");
+		//jQuery(".subcategory ").insertBefore(".category-image");
+		
+</script>
+
+<script type="text/javascript">
+    require(['jquery', 'OwlCarousel'], function () {
+        jQuery(document).ready(function () {
+            jQuery(".happy-pet").owlCarousel({
+				items: 1,
+                itemsDesktop: [1367, 1],
+                itemsDesktopSmall: [1024, 1],
+                itemsTablet: [768, 1],
+                itemsTabletSmall: [479, 1],
+                pagination: true,
+				nav:true,
+				autoplay:true,
+				loop:true,
+                navigation:true
+				
+            });
+        });
+		});
+
+		//jQuery(".category-image").insertAfter("");
+		//jQuery(".subcategory ").insertBefore(".category-image");
+		
+</script>
+
+
+<script>
+require(['jquery', 'featuredOwlCarousel'], function () {
+jQuery(document).ready(function () {
+
+	//Owl Home page banner 
+	var owl = jQuery("#banner-slider-demo-1").owlCarousel({
+		 items: 1,
+		 autoplay: false,
+		 autoplayTimeout: 5000,
+		 autoplayHoverPause: true, 
+		 dots: true,
+		 dotsContainer: '#carousel-custom-dots',
+		 nav: true,
+		 navRewind: true,
+		 // animateIn: 'fadeIn',
+		 // animateOut: 'fadeOut',
+		 loop: true,
+		 navText: ["<em class='porto-icon-chevron-left'></em>","<em class='porto-icon-chevron-right'></em>"],
+		 responsiveClass: true,
+		 responsive: {
+		 991: {
+		 dots: true
+		 }
+		 },
+		 startPosition: randomPosition()
+		});
+		
+		 jQuery('.owl-dot').click(function(){
+			
+			owl.trigger('to.owl.carousel', [jQuery(this).index(), 300]);
+			});
+		 //Random index generator
+		 function randomPosition(){
+		 var r_hb = jQuery('#carousel-custom-dots li').length;
+		 var randomize = null;
+		 
+		 
+		 randomize=1
+		 
+		 
+		 if (randomize != 0) {
+		 return (Math.floor(Math.random()* r_hb));
+		 }
+		 else { return 0 ;}
+		 }
+
+		 //Sort random function
+		 function random(owlSelector){
+		 owlSelector.children().sort(function(){
+		 return Math.round(Math.random()) - 0.5;
+		 }).each(function(){
+		 jQuery(this).appendTo(owlSelector);
+		 });
+		 }
+	});
+});
+
+
+</script>
+
+<script>
+//=================== About-us, FAQs page tab===============//
+require(['jquery'], function () {
+	jQuery(document).ready(function(){
+		
+		jQuery('ul.tabs li').click(function(){
+			var tab_id = jQuery(this).attr('data-tab');
+
+			jQuery('ul.tabs li').removeClass('current');
+			jQuery('.tab-content').removeClass('current');
+			jQuery('.tab-content-banner').removeClass('current');
+
+			jQuery(this).addClass('current');
+			jQuery("#"+tab_id).addClass('current');
+			jQuery("#"+tab_id+"-banner").addClass('current');
+		});
+		
+		var tabName = window.location.hash;
+		if(tabName != ""){
+			var hash = tabName.split('#')[1];
+			jQuery('.'+hash).click();
+		}
+
+	});
+});
+</script>
+
+<script type="text/javascript">
+   require(['jquery', 'OwlCarousel'], function () {
+        jQuery(document).ready(function () {
+           jQuery(".myaccount-link").click(function(){
+         jQuery("ul.wishlist-menu").toggle();
+           });
+
+			});
+			});
+	
+			
+			</script>
+			
+	<script type="text/javascript">
+	   require(['jquery', 'OwlCarousel'], function () {
+		  jQuery(document).ready(function(){
+	  jQuery('ul#carousel-custom-dots li').click(function(){
+	   jQuery('li').removeClass("active");
+	   jQuery(this).addClass("active");
+	});
+	});
+	});
+				
+	</script>
+			
+<script type="text/javascript">
+	/* require(['jquery', 'OwlCarousel'], function () {
+		jQuery(document).ready(function () {
+			
+			jQuery(".rd-navbar-nav-wrap .rd-navbar-nav .tm-megamenu ul li ul li").click(function(){
+				jQuery(".rd-navbar-nav-wrap .rd-navbar-nav .tm-megamenu ul li ul li ul").toggle();
+			});
+
+		});
+	}); */
+</script>	
+
+
+
+
+
+<script type="text/javascript">
+		require(['jquery'], function () {
+			jQuery(document).ready(function () {      
+				jQuery('div.nav-dog > ul.level1 > li.item > ul.level2 > li.item').addClass('subchild-cls');
+				jQuery("li.subchild-cls > ul.vm-static").hide();
+				
+				jQuery(".subchild-cls").hover(function(){
+					jQuery(this).find(" ul.vm-static").show();
+					}, function(){
+					jQuery("li.subchild-cls > ul.vm-static").hide();
+				});
+				
+				// Sticky HEader
+
+				jQuery( window ).scroll(function() {
+					
+						/* if(jQuery( ".page-header .rd-navbar" ).hasClass("rd-navbar--is-stuck"))
+						{
+							jQuery( ".rd-navbar-toggle" ).addClass("rd-navbar-toggle-cls");
+							jQuery( ".rd-navbar-nav-wrap" ).hide();
+							
+							jQuery(".rd-navbar-toggle-cls").click(function(){
+								
+								if(jQuery(this).hasClass("active")){
+									//jQuery(this).siblings(".rd-navbar-nav-wrap").slideDown();
+									jQuery(this).siblings(".rd-navbar-nav-wrap").show();
+									var isTouch=true;
+									 
+								}else{
+									//jQuery(this).siblings(".rd-navbar-nav-wrap").hide();
+									jQuery(this).siblings(".rd-navbar-nav-wrap").hide();
+								}
+								
+							});
+							
+						}
+						else
+						{
+							jQuery( ".rd-navbar-toggle" ).removeClass("rd-navbar-toggle-cls");
+							jQuery( ".rd-navbar-nav-wrap" ).show();
+						} */
+					
+					
+				});
+				
+			});
+		});
+		
+
+</script>
+
+	<script type="text/javascript">
+	require(['jquery', 'OwlCarousel'], function () {
+		jQuery(document).ready(function(){
+			/* jQuery('.field.search label').click(function(){
+				jQuery('.block-search .control').show();
+
+
+				jQuery('.field.search label').click(function(){
+				jQuery('.block-search .control').hide();
+				});
+				
+			}); */
+			
+			
+			
+			
+			
+			/* jQuery('.field.search label').click(function(event){
+				
+				alert(jQuery('.field.search label').hasClass('active'));
+				if(jQuery('.field.search label').hasClass('active')){
+					jQuery('.field.search label').removeClass('active');
+					event.preventDefault();
+				}else{
+					jQuery('.field.search label').addClass('active');
+					event.preventDefault();
+				}
+				
+
+			}); */
+			
+		}); 
+	});
+				
+	</script>
+	
+<script>
+	// =================Homepage About us section "ShowMore/ShowLess"=======================//
+
+	function moretext() {
+		var x = document.getElementById("rd-more");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+			jQuery("#show-more-less").html('Show Less');
+		} else {
+			x.style.display = "none";
+			jQuery("#show-more-less").html('Show More');
+		}
+	}
+</script>
+
+<script type="text/javascript">
+	// =================Birthday Club Page Slider=======================//
+
+    require(['jquery', 'OwlCarousel'], function () {
+        jQuery(document).ready(function () {
+            jQuery(".birthday-slider").owlCarousel({
+				items: 4,
+				margin:10,
+                itemsDesktop: [1367, 4],
+                itemsDesktopSmall: [1024, 3],
+                itemsTablet: [768, 2],
+                itemsTabletSmall: [479, 1],
+                pagination: false,
+				nav:true,
+				autoPlay:true,
+				loop:true,
+                navigation:true
+			});
+        });
+	});
+
+		//jQuery(".category-image").insertAfter("");
+		//jQuery(".subcategory ").insertBefore(".category-image");
+		
+</script>
+
+<script type="text/javascript">
+	// =================Stores Page Slider=======================//
+
+    require(['jquery', 'OwlCarousel'], function () {
+        jQuery(document).ready(function () {
+            jQuery(".store-slider").owlCarousel({
+				items: 1,
+				//margin:10,
+                itemsDesktop: [1367, 1],
+                itemsDesktopSmall: [1024, 1],
+                itemsTablet: [768, 1],
+                itemsTabletSmall: [479, 1],
+                pagination: true,
+				//nav:true,
+				autoPlay:true,
+				loop:true,
+               // navigation:true
+			});
+        });
+	});
+
+		
+</script>

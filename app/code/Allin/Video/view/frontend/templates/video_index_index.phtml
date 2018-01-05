@@ -1,0 +1,584 @@
+<?php 
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager=$objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+		$baseURL_l = $storeManager->getStore()->getBaseUrl();
+
+$mediapath =  $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+	      $filepath =   $mediapath.'zipcode/loading.gif';		?>
+<div class="video-sectionLeft">
+	<?php		$collection = $objectManager->create('Allin\VideoCategory\Model\Videocategory')->getCollection()
+								->addFieldToFilter('status', ['eq' => "0"]);
+			//echo '<pre>'; print_r($collection->getData()); die;
+			if ($collection->count() > 0){ ?>
+			<select id="video_id" onchange="autoComplete();">
+				<option value="">Select Category</option>
+			<?php foreach($collection as $category){ ?>
+			 <option value="<?php echo $category->getCategoryName()?>"><?php echo $category->getCategoryName();?></option>
+				<?php		//$data_array[$category->getCategoryName()]=$category->getCategoryName();
+						//echo $category->getVideocategoryId().'  '.$category->getCategoryName().'<br/>';
+				}?>
+			</select>
+		<?php } ?>
+ <div id="result">
+ <?php 
+ 	$collection1 = $objectManager->create('Allin\Video\Model\Video')->getCollection()->addFieldToFilter('status', ['eq' => "0"]);
+			//echo '<pre>'; print_r($collection->getData()); die;
+			$x='';
+			$i=0;
+			if ($collection1->count() > 0){
+				foreach($collection1 as $video){
+					$x= $video->getId();
+					$i++;
+					 //$videoUrl = explode("v=",$video->getVideoUrl()); ?>
+					 <?php 
+					 $collection2 = $objectManager->create('Allin\VideoComment\Model\Videocomment')->getCollection()->addFieldToFilter('videos_id', array('eq' =>$video->getId()))->addFieldToFilter('status', ['eq' => "0"]);
+					 ?>
+					 <?php     
+							$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+							$store = $storeManager->getStore();
+							$mediaUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+						?>
+						<div class="testt-<?php echo $video->getId(); ?>" id="videos">
+							<iframe id="<?php echo $video->getId(); ?>" width="1100" height="655" src="http://www.youtube.com/embed/<?php echo $video->getVideoUrl() ?>" style="display:none;"></iframe>
+							<?php 
+								$url = $video->getVideoTitle();
+								$url = preg_replace('#[^0-9a-z]+#i', '-', $url);
+								$url = strtolower($url);
+							?>
+							<?php $imge = 'https://img.youtube.com/vi/'.$video->getVideoUrl().' /0.jpg'?>
+							<div id="videoimg" class="<?php echo $url; ?> first-<?php echo $i ?>" style="cursor:pointer"><a href="#<?php echo $url; ?>">
+								<div class="sj-lft">
+									<img src="https://img.youtube.com/vi/<?php echo $video->getVideoUrl() ?>/0.jpg"/>
+									<div class="you-btn">
+										<img src="<?php echo $mediaUrl ?>zipcode/youtube-play-button.png">
+									</div>
+								</div>
+								<div class="sj-rhi"><h2 class="t1"> <?php echo $video->getVideoTitle() ?> </h2></div></a>
+								
+							</div>
+							<div id="video-desc" style="display:none">
+							<div class="heading-share">
+								<h2 class="size-26 bold title">Description</h2>
+								<div id="videoshare">
+									<div class="addthis_inline_share_toolbox" data-url="<?php echo $baseURL_l.'video#'.$url?>" data-title="<?php echo $video->getVideoTitle(); ?>" addthis:media="<?php echo 'https://img.youtube.com/vi/'.$video->getVideoUrl() ?>/0.jpg" ></div>
+								</div>
+							</div>
+							<?php echo $video->getDescription() ?>
+								<ul id="authordata">
+								<?php 
+								$total = count($collection2);
+								if (count($collection2) > 0){
+									echo '<h2>Comments['. $total .']</h2>';
+									foreach($collection2 as $col){
+										$videocommentId = $col->getVideocommentId();
+										$parentId = $col->getParentId();
+										$videoId = $col->getVideosId();
+										if($col->getParentId()==0){
+									?>
+										<li>
+											<div class="comment-author">
+												<h4><?php echo $col->getUsername(); ?></h4> 		
+											<p><?php echo $col->getComment(); ?></p>
+											</div>
+										<?php /* ?>	<span><?php echo $col->getVideocommentId(); ?></span><?php */ ?>
+											<div id="replybtn"><span class="btnrply" id="btnrply-<?php echo $col->getVideocommentId(); ?>" vidId="<?php echo $col->getVideosId(); ?>" videocommentid="<?php echo $col->getVideocommentId(); ?>">Reply</span></div>
+											<ul id="authordata2">
+									<?php 	getCommentForParent($videocommentId,$videoId,$objectManager);?></ul>
+										</li>
+								<?php	}}}
+								?>
+								</ul>
+							</div>
+							
+						</div>
+					
+		<?php 		}
+			}
+?>
+ </div>
+ </div>
+ <div class="video-sectionRight">
+	<div class="large-video" data-id="large-video"></div>
+<!-- ======================Comment Form Start=================================-->
+	<div class="video-form" data-id="video-form">
+		<h2>Write your thoughts</h2>
+			<span id="formLoader">&nbsp;</span>
+			<span id="successmsg">&nbsp;</span>
+		<form action="#" method="post" name="formvideo" id="formvideo" data-mage-init='{"validation": {}}' autocomplete="off">
+			<input type="hidden" name="videoId" id="videoId" value="">
+			<div class="formsVideo required">
+				<label for="msg">Message:</label>
+				<textarea id="msg" name="user_message" class="input-text" data-validate="{required:true}"></textarea>
+				<div id="messageValid"></div>
+			</div>
+			<div class="formsVideo1 required">
+				<label for="name" class>Name:</label>
+				<input type="text" id="name" name="user_name" class="input-text" data-validate="{required:true}"/>
+				<div id="nameValid"></div>
+			</div>
+			<div class="formsVideo2 required">
+				<label for="mail">E-mail:</label>
+				<input type="email" id="mail" name="user_mail" class="input-text" data-validate="{required:true, 'validate-email':true}"/>
+				<div id="mailValid"></div>
+			</div>
+			  <input type="button" value="submit comment" id="formsubmit"/>
+		</form>
+	</div>
+<!-- ======================Comment Form End=================================-->
+
+<!-- ======================Reply Form Start=================================-->
+<div id="videoreply-form" class="videoreply-form" data-id="videoreply-form" style="display:none">
+			<span id="replyLoader">&nbsp;</span>
+			<span id="successreply">&nbsp;</span>
+		<h2>Write your Reply here</h2>
+		<span id="cancelReply">Cancel</span>
+		<form action="#" method="post" name="formreply" id="formreply" data-mage-init='{"validation": {}}' autocomplete="off">
+			<input type="hidden" name="videosId" id="videosId" value="">
+			<input type="hidden" name="commentId" id="commentId" value="">
+			<div class="formsReply required">
+				<label for="usermsg">Message:</label>
+				<textarea id="usermsg" name="usermessage" class="input-text" data-validate="{required:true}"></textarea>
+				<div id="messageReply"></div>
+			</div>
+			<div class="formsReply1 required">
+				<label for="username" class>Name:</label>
+				<input type="text" id="username" name="username" class="input-text" data-validate="{required:true}"/>
+				<div id="namereply"></div>
+			</div>
+			<div class="formsReply2 required">
+				<label for="usermail">E-mail:</label>
+				<input type="email" id="usermail" name="usermail" class="input-text" data-validate="{required:true, 'validate-email':true}"/>
+				<div id="mailreply"></div>
+			</div>
+			  <input type="button" value="submit reply" id="formcommentreply"/>
+		</form>
+	</div>
+<!-- ======================Reply Form End=================================-->
+	
+ </div>
+ 
+ 
+ <?php 
+ 
+				function getCommentForParent($parentId,$videoId,$objectManager) {
+								
+								$collection = $objectManager->create('Allin\VideoComment\Model\Videocomment')->getCollection()->addFieldToFilter('videos_id', array('eq' =>$videoId))->addFieldToFilter('parent_id', array('eq' =>$parentId))->addFieldToFilter('status', ['eq' => "0"]);
+									   foreach($collection as $comment) {
+											$user = $comment->getUsername();   
+											$comment_text = $comment->getComment();
+											$commentid = $comment->getVideocommentId();
+										?>
+											<li>
+											<div class="comment-author">
+												<h4><?php echo $user; ?></h4> 		
+											<p><?php echo $comment_text; ?></p>
+											</div>
+											<div id="replybtn"><span class="btnrply" id="btnrply-<?php echo $commentid; ?>" vidId="<?php echo $videoId; ?>" videocommentid="<?php echo $commentid; ?>">Reply</span></div>
+											<ul id="authordata1">
+											<?php getCommentForParent($comment->getVideocommentId(),$videoId,$objectManager);?></ul>
+										</li>
+										
+										<?php 	
+											
+											//$comment_timestamp = timeAgo($comment['comment_timestamp']);  //get time ago
+										}
+									}
+ ?>
+ <script>
+require(['jquery'], function() {
+	jQuery(document).ready(function() {
+		jQuery("body").on('click','.btnrply',function(){
+			var repid = jQuery(this).attr('id');
+			var vidid = jQuery(this).attr('vidId');
+			var vcomid = jQuery(this).attr('videocommentid');
+			
+			//alert(jQuery(this).attr('id'));
+			jQuery("#commentId").val(vcomid);
+			jQuery("#videosId").val(vidid);
+			jQuery("#videoreply-form" ).insertAfter( jQuery( ".replybtn" ) );
+			jQuery("#videoreply-form").show();
+			jQuery(".video-form").hide();
+			
+		});
+		jQuery("body").on('click','#cancelReply',function(){
+			//var repid = jQuery(this).attr('id');
+			//alert(jQuery(this).attr('id'));
+			//jQuery("#commentId").val(repid);
+			jQuery("#videoreply-form").hide();
+			jQuery(".video-form").show();
+		});
+	});
+});
+ </script>
+ <script>
+//========================reply Form======================================//
+require(['jquery'], function() {
+	jQuery(document).ready(function() {		
+	jQuery( "#formcommentreply" ).click(function() {
+		if(1){
+		var username, useremail, usercomment = 0;	
+		var username = document.forms["formreply"]["username"].value;
+		var useremail = document.forms["formreply"]["usermail"].value;
+		var usercomment = document.forms["formreply"]["usermessage"].value;
+		if(usercomment ==''){ 
+			usercomment = 1;
+			jQuery('#messageReply').text('This is a required field.');
+			jQuery('#messageReply').show();
+			document.forms["formreply"]["usermessage"].focus() ;
+			return false;
+		} 
+		else { 
+			usercomment = 0; 
+			jQuery('#messageReply').hide();
+		}
+		if(username ==''){ 
+			username = 1;
+			jQuery('#namereply').text('This is a required field.');
+			jQuery('#namereply').show();
+			document.forms["formreply"]["username"].focus() ;
+			return false;
+		} 
+		else { 
+			username = 0; 
+			jQuery('#namereply').hide();
+		}
+		if(useremail ==''){ 
+			useremail = 1;
+			jQuery('#mailreply').text('This is a required field.');
+			jQuery('#mailreply').show();
+			document.forms["formreply"]["usermail"].focus() ;
+			return false;
+		}
+		else if(useremail){
+			//alert(useremail);
+			var atpos = useremail.indexOf("@");
+			var dotpos = useremail.lastIndexOf(".");
+			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=useremail.length) {
+				jQuery('#mailreply').text('Not a valid Email address.');
+				//jQuery('#mailValid').show();
+				document.forms["formreply"]["usermail"].focus() ;
+				return false;
+		}	
+		else { 
+		//alert(useremail);
+			useremail = 0; 
+			jQuery('#mailreply').hide();
+		}}	
+		var data = jQuery('#formreply').serialize();
+		//alert(data);
+		jQuery.ajax({
+			url:"<?php echo $this->getUrl().'video/index/videoreply';?>",
+			type:'POST',
+			data: data,
+			beforeSend:function()
+			{
+				 jQuery("#replyLoader").html("<img src='http://119.82.68.254/headsupfourtails/pub/media/zipcode/loading.gif'/>");
+				 jQuery("#replyLoader").show();
+			},
+				success: function(response)
+			{	
+				jQuery("#replyLoader").hide();
+				jQuery("#successreply").html(response);
+				jQuery("#successreply").show().delay(5000).fadeOut();
+				jQuery("#formreply")[0].reset();
+				
+				
+			}
+		});
+		}else{ return false; }
+		});
+
+	});
+});
+</script>
+ 
+ 
+ <script type="text/x-magento-init">
+  {
+       "#formvideo": {
+           "validation": {}
+       }
+   }
+</script>
+ <script type="text/javascript">
+		function autoComplete()
+		{	//jQuery(".large-video").html('');
+			var searchVal = jQuery('#video_id').val();
+			var dataString = 'searchVal='+searchVal;
+			//alert(dataString);
+                   jQuery("#result").html("<img src='http://119.82.68.254/headsupfourtails/pub/media/zipcode/loading.gif'/>");
+                       jQuery.ajax({
+                            type:"post",
+                            url:"<?php echo $block->getUrl('video/index/video');?>",
+                            data:dataString,
+                            success:function(data){
+                               jQuery("#result").html(data);
+							   //a2a.init('page');
+							   jQuery(document).ready(function(){
+									jQuery('#result>div>div.first-1').addClass('active');
+									//alert(this);
+									var vid1 = jQuery('.first-1.active').prev().attr( "src" );
+									var idv1 = jQuery('.first-1.active').prev().attr( "id" );
+									jQuery("#videoId").val(idv1);
+									var des1 = jQuery('.first-1.active').next().html();
+									//alert(des1);
+									jQuery( ".large-video" ).html( '<iframe width="1100" height="655" src="' + vid1 + '" id="'+ idv1 +'"></iframe><div class="descriptionvideo">'+ des1 +'</div>' );
+									jQuery(document).ajaxStop(function() {
+										  if (window.addthis) {
+											window.addthis = null;
+											window._adr = null;
+											window._atc = null;
+											window._atd = null;
+											window._ate = null;
+											window._atr = null;
+											window._atw = null;
+										  }
+										  return jQuery.getScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a4219ef9de357a6");
+									});
+									//addthis.toolbox();
+								});
+                             }
+                          });
+		}
+ </script>
+<script>
+	//============Video page================
+	require(['jquery'], function () {
+		jQuery(document).ready(function(){
+			jQuery('body').on('click','#result>div #videoimg',function(){
+				var vid = jQuery(this).prev().attr( "src" );
+				var idv = jQuery(this).prev().attr( "id" );
+				jQuery("#videoId").val(idv);
+				var des = jQuery(this).next().html();
+				jQuery( ".large-video" ).html( '<iframe width="1100" height="655" src="' + vid + '" id="'+ idv +'"></iframe><div class="descriptionvideo">'+ des +'</div>' );
+					jQuery(document).ajaxStop(function() {
+						  if (window.addthis) {
+							window.addthis = null;
+							window._adr = null;
+							window._atc = null;
+							window._atd = null;
+							window._ate = null;
+							window._atr = null;
+							window._atw = null;
+						  }
+						  return jQuery.getScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a4219ef9de357a6");
+					});
+			});
+		});
+		
+		jQuery(document).ready(function(){
+			jQuery('#result>div>div.first-1').addClass('active');
+			//alert(this);
+			var vid1 = jQuery('.first-1.active').prev().attr( "src" );
+				var idv1 = jQuery('.first-1.active').prev().attr( "id" );
+				jQuery("#videoId").val(idv1);
+				var des1 = jQuery('.first-1.active').next().html();
+			jQuery( ".large-video" ).html( '<iframe width="1100" height="655" src="' + vid1 + '" id="'+ idv1 +'"></iframe><div class="descriptionvideo">'+ des1 +'</div>' );
+		});
+	});
+</script>
+
+<script>
+
+	require(['jquery'], function () {
+		jQuery(window).load(function(){
+			var tabName = window.location.hash;
+			//alert(tabName);
+			if(tabName != ""){
+				var hash = tabName.split('#')[1];
+				//var hash1 = hash.split('-')[1];
+				setTimeout(function() {
+					jQuery('.'+hash).click();
+				},10);
+		}
+	});
+}); 
+
+</script>
+
+
+<script>
+//========================Comment Form======================================//
+require(['jquery'], function() {
+	jQuery(document).ready(function() {		
+	jQuery( "#formsubmit" ).click(function() {
+		if(1){
+		var username, useremail, usercomment = 0;	
+		var username = document.forms["formvideo"]["user_name"].value;
+		var useremail = document.forms["formvideo"]["user_mail"].value;
+		var usercomment = document.forms["formvideo"]["user_message"].value;
+		if(usercomment ==''){ 
+			usercomment = 1;
+			jQuery('#messageValid').text('This is a required field.');
+			jQuery('#messageValid').show();
+			document.forms["formvideo"]["user_message"].focus() ;
+			return false;
+		} 
+		else { 
+			usercomment = 0; 
+			jQuery('#messageValid').hide();
+		}
+		if(username ==''){ 
+			username = 1;
+			jQuery('#nameValid').text('This is a required field.');
+			jQuery('#nameValid').show();
+			document.forms["formvideo"]["user_name"].focus() ;
+			return false;
+		} 
+		else { 
+			username = 0; 
+			jQuery('#nameValid').hide();
+		}
+		if(useremail ==''){ 
+			useremail = 1;
+			jQuery('#mailValid').text('This is a required field.');
+			jQuery('#mailValid').show();
+			document.forms["formvideo"]["user_mail"].focus() ;
+			return false;
+		}
+		else if(useremail){
+			//alert(useremail);
+			var atpos = useremail.indexOf("@");
+			var dotpos = useremail.lastIndexOf(".");
+			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=useremail.length) {
+				jQuery('#mailValid').text('Not a valid Email address.');
+				//jQuery('#mailValid').show();
+				document.forms["formvideo"]["user_mail"].focus() ;
+				return false;
+		}	
+		else { 
+		//alert(useremail);
+			useremail = 0; 
+			jQuery('#mailValid').hide();
+		}}
+		var data = jQuery('#formvideo').serialize();
+		//alert(data);
+		jQuery.ajax({
+			url:"<?php echo $this->getUrl().'video/index/videocomment';?>",
+			type:'POST',
+			data: data,
+			beforeSend:function()
+			{
+				 jQuery("#formLoader").html("<img src='http://119.82.68.254/headsupfourtails/pub/media/zipcode/loading.gif'/>");
+				 jQuery("#formLoader").show();
+			},
+				success: function(response)
+			{	
+				jQuery("#formLoader").hide();
+				jQuery("#successmsg").html(response);
+				jQuery("#successmsg").show().delay(5000).fadeOut();
+				jQuery("#formvideo")[0].reset();
+				
+				
+			}
+		});
+		}else{ return false; }
+		});
+
+	});
+});
+</script>
+<style>
+#formsubmit{
+    float: right;
+    border-radius: 23px;
+    border: 1px solid;
+    padding: 12px 30px;
+    margin-top: 24px;
+    background: #e0a24f;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: bold;	
+}
+
+.video-sectionLeft select#video_id{margin-bottom: 10px;}
+
+#videos{border-bottom: 2px solid #9c7125;}
+#videos:first-child{border-top: 2px solid #9c7125;}
+
+div#videoimg{font-size: 0;}
+.sj-lft{display: inline-block; width: 50%; position: relative;}
+.sj-lft .you-btn{position: absolute; top: 55px; width: 100%; display: inline-block; float: left; text-align: center; left: 0;}
+
+.sj-rhi{display: inline-block; width: 50%; vertical-align: middle; float: none; text-align: left; font-size: 18px; padding: 0px 10px; height: 138px;background: #d1aa67; padding-top: 10px;}
+.sj-rhi h2.t1{font-size: 18px;}
+
+#result #videos:nth-child(odd) .sj-rhi{background: #d1aa67;}
+#result #videos:nth-child(even) .sj-rhi{background: #bf8e3a;}
+#result{height: 600px; overflow-y: scroll;}
+
+.video-sectionLeft select#video_id{background: transparent; border: 2px solid #d1aa67;}
+
+span.btnrply{background: #e0a24f;
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 10px 0;
+    display: inline-block;
+    cursor: pointer;}
+	
+	span#successreply ~ h2{display: inline-block;}
+	span#cancelReply{
+	background: #e0a24f;
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 10px 0;
+    display: inline-block;
+    cursor: pointer;}
+#formcommentreply{
+	background: #e0a24f;
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 10px 0;
+    display: inline-block;
+    cursor: pointer;
+	text-transform: capitalize;
+}
+#successreply{width:100%;float:left; color:green;}
+#successmsg{width:100%;float:left; color:green;}
+
+.video-form .formsVideo1.required {
+    width: 49%;
+    float: left;
+}
+.video-form .formsVideo2.required {
+    width: 49%;
+    float: right;
+}
+.video-form .formsVideo.required {
+    margin-bottom: 15px;
+}
+
+.video-form label {
+    margin-bottom: 5px;
+    display: block;
+}
+#videoreply-form .formsReply1 {
+    width: 49%;
+    float: left;
+}
+#videoreply-form .formsReply2 {
+    width: 49%;
+    float: right;
+}
+
+#videoreply-form label {
+    margin-bottom: 5px;
+    display: block;
+}
+
+#videoreply-form {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+#videoreply-form #cancelReply{margin-top:0px; margin-left:50px;}
+#videoreply-form h2{margin-top: 6px;}
+</style>

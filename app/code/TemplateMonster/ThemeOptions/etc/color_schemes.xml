@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:TemplateMonster_ThemeOptions:etc/color_schemes.xsd">
+    <website code="base">
+        <scheme id="wheels-tyres" label="Apparel" color="#000080">
+            <param name="primary_color" value="#ff9999" />
+            <param name="secondary_color" value="#000000" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#ffffff" />
+            <param name="primary_font_color" value="#000000" />
+            <param name="primary_link_color" value="#ff9999" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+    </website>
+</config>

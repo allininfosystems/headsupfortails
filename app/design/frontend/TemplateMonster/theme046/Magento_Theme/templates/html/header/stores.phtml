@@ -1,0 +1,87 @@
+
+<!-- DOTS Container -->
+<ul id='carousel-custom-dots' class='owl-dots'>
+<li class="owl-dot">one</li>
+<li class="owl-dot">two</li>
+</ul>
+<div id="banner-slider-demo-1" class="owl-carousel owl-banner-carousel owl-middle-narrow owl-home-slide">
+<div class="item">one<img src="http://119.82.68.254/headsupfourtails/pub/media/theme_options/default/logo-new.png"  width="450" height="450" alt="" />
+</div>
+<div  class="item" >two<img src="http://119.82.68.254/headsupfourtails/pub/media/theme_options/default/logo-new.png" width="450" height="450"  alt="" />
+</div>
+<div  class="item" >two<img src="http://119.82.68.254/headsupfourtails/pub/media/theme_options/default/logo-new.png" width="450" height="450"  alt="" />
+</div>
+<div  class="item" >two<img src="http://119.82.68.254/headsupfourtails/pub/media/theme_options/default/logo-new.png" width="450" height="450"  alt="" />
+</div>
+</div>
+
+<!-- DOTS Container --> 
+<ul id='carousel-custom-dots' class='owl-dots'>
+<li class="owl-dot">one</li>
+<li class="owl-dot">two</li>
+</ul>
+
+
+<div id="banner-slider-demo-1" class="owl-carousel owl-banner-carousel owl-middle-narrow owl-home-slide">
+
+<div class="item">one<img src="https://www.mypanditg.com/wp-content/uploads/2015/12/RudraBhishike-350x435.jpg"  width="450" height="450" alt="" />
+</div>
+
+<div  class="item" >two<img src="https://www.mypanditg.com/wp-content/uploads/2015/12/RudraBhishike-350x435.jpg" width="450" height="450"  alt="" />
+</div>
+
+</div>
+
+
+
+<script>
+
+ //Owl Home page banner 
+ var owl = $("#banner-slider-demo-1").owlCarousel({
+ items: 1,
+ autoplay: false,
+ autoplayTimeout: 5000,
+ autoplayHoverPause: true, 
+ dots: true,
+ dotsContainer: '#carousel-custom-dots',
+ nav: true,
+ navRewind: true,
+ // animateIn: 'fadeIn',
+ // animateOut: 'fadeOut',
+ loop: true,
+ navText: ["<em class='porto-icon-chevron-left'></em>","<em class='porto-icon-chevron-right'></em>"],
+ responsiveClass: true,
+ responsive: {
+ 991: {
+ dots: true
+ }
+ },
+ startPosition: randomPosition()
+ });
+ $('.owl-dot').click(function(){owl.trigger('to.owl.carousel', [$(this).index(), 300]);});
+ //Random index generator
+ function randomPosition(){
+ var r_hb = $('#carousel-custom-dots li').length;
+ var randomize = null;
+ 
+ 
+ randomize=1
+ 
+ 
+ if (randomize != 0) {
+ return (Math.floor(Math.random()* r_hb));
+ }
+ else { return 0 ;}
+ }
+
+ //Sort random function
+ function random(owlSelector){
+ owlSelector.children().sort(function(){
+ return Math.round(Math.random()) - 0.5;
+ }).each(function(){
+ $(this).appendTo(owlSelector);
+ });
+ }
+
+
+</script>

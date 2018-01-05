@@ -1,0 +1,35 @@
+<!--@subject Headsupfortails Birthday Club@-->
+<!--@vars {
+"var data.comment":"Comment",
+"var data.email":"Sender Email",
+"var data.name":"Sender Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<br>
+{{trans "Dear %name" name=$data.name}} <br>
+{{trans "Email: %email" email=$data.email}} <br><br>
+<b>First Pet Information</b><br><br>
+{{trans "Pet Type: %pettype" pettype=$data.pettype}} <br>
+{{trans "Pet Name: %petname" petname=$data.petname}} <br>
+{{trans "Pet Breed: %petbreed" petbreed=$data.petbreed}} <br>
+{{trans "Pet Birthday: %petbirthday" petbirthday=$data.petbirthday}} <br><br>
+<b>Second Pet Information</b><br><br>
+{{trans "Pet Type: %pettype1" pettype1=$data.pettype1}} <br>
+{{trans "Pet Name: %petname1" petname1=$data.petname1}} <br>
+{{trans "Pet Breed: %petbreed1" petbreed1=$data.petbreed1}} <br>
+{{trans "Pet Birthday: %petbirthday1" petbirthday1=$data.petbirthday1}} <br><br>
+
+Thank you for your subscription<br>
+
+
+Your information has been sent to the Headsupfortails Team.<br>
+
+Please contact our customer care at sales@headsupfortails.com for any service related issues.<br>
+
+Thank you for choosing Headsupfortails<br>
+
+www.headsupfortails.com <br>
+
+
+{{template config_path="design/email/footer_template"}}

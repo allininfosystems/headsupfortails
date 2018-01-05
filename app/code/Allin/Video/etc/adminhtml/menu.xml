@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Allin_Video::parent" title="Video" module="Allin_Video" sortOrder="100" resource="Allin_Video::parent"/>
+		<add id="Allin_Video::video" title="Manage Video" module="Allin_Video" sortOrder="20" parent="Allin_Video::parent" action="video/video" resource="Allin_Video::video"/>
+		<add id="Allin_VideoCategory::videocategory" title="Manage VideoCategory" module="Allin_VideoCategory" sortOrder="20" parent="Allin_Video::parent" action="videocategory/videocategory" resource="Allin_VideoCategory::videocategory"/>
+		<add id="Allin_VideoComment::videocomment" title="Manage VideoComment" module="Allin_VideoComment" sortOrder="20" parent="Allin_Video::parent" action="videocomment/videocomment" resource="Allin_VideoComment::videocomment"/>
+
+    </menu>
+</config>

@@ -1,0 +1,21 @@
+{
+    "name": "allin/module-customregistrationfields",
+    "description": "Customcutomerfields is a copy right of Allinwebsolution pvt ltd.",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Allin\\Customregistrationfields\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

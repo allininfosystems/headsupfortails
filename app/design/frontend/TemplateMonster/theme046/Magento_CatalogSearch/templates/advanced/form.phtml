@@ -1,0 +1,279 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php
+/**
+ * Catalog advanced search form
+ *
+ * @var $block \Magento\CatalogSearch\Block\Advanced\Form
+ */
+?>
+<?php $maxQueryLength = $this->helper('Magento\CatalogSearch\Helper\Data')->getMaxQueryLength();?>
+<form class="form search advanced" action="<?php /* @escapeNotVerified */ echo $block->getSearchPostUrl() ?>" method="get" id="form-validate">
+<fieldset class="fieldset <?php /* @escapeNotVerified */ echo $block->getSearchPostUrl() ?>"><?php $i=1;?>
+	<?php /* ?><div class="step1 questions" id="<?php echo 'step-search-'.$i;?>">
+		<div class="options">
+	 <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('dog_food_finder')->toHtml();?>
+		</div>
+	</div> <?php */ ?>
+	<div class="step1 questions" id="<?php echo 'step-search-'.$i;?>">
+	<p class="food-search-quote" style="text-align:center;">Choosing the right dog food is simple when you know it's formulated to meet your pet's nutritional needs.</p>
+		<div class="options">
+			<p class="label">
+                <span><?php echo 'Who would you like to find food for?' ?></span>
+            </p><br/>
+			<input type="text" placeholder="Enter your Pet Name" name="petname" id="petname" />
+		</div>
+	</div>
+<!--    <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Search Settings') ?></span></legend><br />-->
+    <?php foreach ($block->getSearchableAttributes() as $_attribute): ?>
+	<?php $i++; ?>
+    <?php $_code = $_attribute->getAttributeCode() ?>
+        <div class="field questions <?php /* @escapeNotVerified */ echo $_code;?>" id="<?php echo 'step-search-'.$i;?>">
+            <div class="control">
+            <?php switch ($block->getAttributeInputType($_attribute)):
+                case 'number': ?>
+                <div class="range fields group group-2">
+                    <div class="field no-label custom-label">
+                        <label class="label" for="<?php /* @escapeNotVerified */ echo $_code ?>">
+                            <span><?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?> <?php /* @escapeNotVerified */ echo __('From (') ?><?php /* @escapeNotVerified */ echo $block->getCurrency($_attribute); ?><?php /* @escapeNotVerified */ echo __(')') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text"
+                                   name="<?php /* @escapeNotVerified */ echo $_code ?>[from]"
+                                   value="<?php echo $block->escapeHtml($block->getAttributeValue($_attribute, 'from')) ?>"
+                                   id="<?php /* @escapeNotVerified */ echo $_code ?>"
+                                   title="<?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?>"
+                                   class="input-text"
+                                   maxlength="<?php /* @escapeNotVerified */ echo $maxQueryLength;?>"
+                                   data-validate="{number:true, 'less-than-equals-to':'#<?php /* @escapeNotVerified */ echo $_code ?>_to'}" />
+                        </div>
+                    </div>
+                    <div class="field no-label custom-label">
+                        <label class="label" for="<?php /* @escapeNotVerified */ echo $_code ?>">
+                            <span><?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?> <?php /* @escapeNotVerified */ echo __('To (') ?><?php /* @escapeNotVerified */ echo $block->getCurrency($_attribute); ?><?php /* @escapeNotVerified */ echo __(')') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text"
+                                   name="<?php /* @escapeNotVerified */ echo $_code ?>[to]"
+                                   value="<?php echo $block->escapeHtml($block->getAttributeValue($_attribute, 'to')) ?>"
+                                   id="<?php /* @escapeNotVerified */ echo $_code ?>_to"
+                                   title="<?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?>"
+                                   class="input-text"
+                                   maxlength="<?php /* @escapeNotVerified */ echo $maxQueryLength;?>"
+                                   data-validate="{number:true, 'greater-than-equals-to':'#<?php /* @escapeNotVerified */ echo $_code ?>'}" />
+                        </div>
+                    </div>
+                </div>
+                <?php break;
+                case 'price': ?>
+                <div class="range price fields group group-2">
+                    <div class="field no-label custom-label">
+                        <label class="label" for="<?php /* @escapeNotVerified */ echo $_code ?>">
+                            <span><?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?> <?php /* @escapeNotVerified */ echo __('From (') ?><?php /* @escapeNotVerified */ echo $block->getCurrency($_attribute); ?><?php /* @escapeNotVerified */ echo __(')') ?></span>
+                        </label>
+                        <div class="control">
+                            <input name="<?php /* @escapeNotVerified */ echo $_code ?>[from]"
+                                   value="<?php echo $block->escapeHtml($block->getAttributeValue($_attribute, 'from')) ?>"
+                                   id="<?php /* @escapeNotVerified */ echo $_code ?>"
+                                   title="<?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?>"
+                                   class="input-text"
+                                   type="text"
+                                   maxlength="<?php /* @escapeNotVerified */ echo $maxQueryLength;?>"
+                                   data-validate="{number:true, 'less-than-equals-to':'#<?php /* @escapeNotVerified */ echo $_code ?>_to'}" />
+                        </div>
+                    </div>
+                    <span class="separator"><?php echo $block->escapeHtml(__('-')) ?></span>
+                    <div class="field with-addon no-label custom-label">
+                        <label class="label" for="<?php /* @escapeNotVerified */ echo $_code ?>">
+                            <span><?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?> <?php /* @escapeNotVerified */ echo __('To (') ?><?php /* @escapeNotVerified */ echo $block->getCurrency($_attribute); ?><?php /* @escapeNotVerified */ echo __(')') ?></span>
+                        </label>
+                        <div class="control">
+                            <div class="addon">
+                                <input name="<?php /* @escapeNotVerified */ echo $_code ?>[to]"
+                                       value="<?php echo $block->escapeHtml($block->getAttributeValue($_attribute, 'to')) ?>"
+                                       id="<?php /* @escapeNotVerified */ echo $_code ?>_to"
+                                       title="<?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?>"
+                                       class="input-text"
+                                       type="text"
+                                       maxlength="<?php /* @escapeNotVerified */ echo $maxQueryLength;?>"
+                                       data-validate="{number:true, 'greater-than-equals-to':'#<?php /* @escapeNotVerified */ echo $_code ?>'}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php break;
+                case 'select': ?>
+					<div class="options">
+						<p class="label" for="<?php /* @escapeNotVerified */ echo $_code ?>">
+                            <span><?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?></span><span class="petnameentered"></span>
+                        </p><br/>
+                    <?php /* @escapeNotVerified */ echo $block->getAttributeRadioElement($_attribute) ?>
+					</div>
+                <?php break;
+                case 'yesno': ?>
+                    <?php /* @escapeNotVerified */ echo $block->getAttributeYesNoElement($_attribute) ?>
+                <?php break;
+                case 'date': ?>
+                <div class="range dates fields group group-2">
+                    <div class="field date no-label">
+                        <div class="control">
+                            <?php /* @escapeNotVerified */ echo $block->getDateInput($_attribute, 'from') ?>
+                        </div>
+                    </div>
+                    <div class="field date no-label">
+                        <div class="control">
+                            <?php /* @escapeNotVerified */ echo $block->getDateInput($_attribute, 'to') ?>
+                        </div>
+                    </div>
+                </div>
+                <?php break;
+                default: ?>
+                <div class="field  custom-label">
+                    <label class="label">
+                        <span><?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text"
+                               name="<?php /* @escapeNotVerified */ echo $_code ?>"
+                               id="<?php /* @escapeNotVerified */ echo $_code ?>"
+                               value="<?php echo $block->escapeHtml($block->getAttributeValue($_attribute)) ?>"
+                               title="<?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?>"
+                               class="input-text <?php /* @escapeNotVerified */ echo $block->getAttributeValidationClass($_attribute) ?>"
+                               maxlength="<?php /* @escapeNotVerified */ echo $maxQueryLength;?>" />
+                    </div>
+                </div>
+            <?php endswitch; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+	<div class="final-msg"><span id="msg-thats-it"></span></div>
+	<div class="btn-btm">
+	 <input type="button" id='previous' value="Previous"/>
+	 <input type="button" id='next' value="Next" disabled="disabled"/>
+	</div>
+</fieldset>
+<div class="actions-toolbar">
+  <div class="primary">
+    <button type="submit"
+            class="action search primary"
+            title="<?php echo $block->escapeHtml(__('Search')) ?>" style="display:none;">
+        <span><?php /* @escapeNotVerified */ echo __('Search') ?></span>
+    </button>
+  </div>
+</div>
+</form>
+<script>
+require([
+    "jquery",
+    "mage/mage",
+    "mage/validation"
+], function($){
+    $('#form-validate').mage('validation', {
+            errorPlacement: function (error, element) {
+                var parent = element.parent();
+                if (parent.hasClass('range')) {
+                    parent.find(this.errorElement + '.' + this.errorClass).remove().end().append(error);
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            messages: {
+                'price[to]': {'greater-than-equals-to': 'Please enter a valid price range.'},
+                'price[from]': {'less-than-equals-to': 'Please enter a valid price range.'}
+            }
+        });
+});
+</script>
+
+<script type="text/javascript">
+	   require(['jquery'], function () {
+			jQuery(document).ready(function(){
+			answers = new Object();
+			jQuery('.option').change(function(){
+				var answer = (jQuery(this).attr('value'))
+				var question = (jQuery(this).attr('name'))
+				answers[question] = answer
+				
+			})
+		
+			var totalQuestions = jQuery('.questions').size();
+			//alert(totalQuestions);
+			var currentQuestion = 0;  
+			var questions = jQuery('.questions');
+			questions.hide();
+			jQuery(questions.get(currentQuestion)).fadeIn();
+					
+			jQuery('#next').prop('disabled',true);
+			//jQuery('#previous').prop('disabled',true);
+			jQuery('#previous').fadeOut();
+			jQuery('#petname').keyup(function(){
+				jQuery('#next').prop('disabled', this.value == "" ? true : false);     
+			})
+			
+	//=================== Next Button Code===================//
+			jQuery('#next').click(function(){
+			jQuery('#next').prop('disabled',true);
+			jQuery('#previous').prop('disabled', this.value == "" ? true : false);    
+			var petName = jQuery('#petname').val();  // Pet name 
+			if(petName!=''){
+				jQuery(".petnameentered").html("<strong id='petnme'>&nbsp;" + petName + "?</strong>");
+			}
+			
+			
+				jQuery(questions.get(currentQuestion)).fadeOut(function(){
+					currentQuestion = currentQuestion + 1;
+					if(currentQuestion == totalQuestions){
+						   jQuery('#msg-thats-it').html("<b>That's It</b>");
+						   //jQuery('#next').prop('disabled',true);
+						   jQuery('#next').fadeOut();
+						   jQuery('.actions-toolbar button').css("display","block");
+						   
+					}else{
+						jQuery('#msg-thats-it').html("");
+						jQuery(questions.get(currentQuestion)).fadeIn();
+						jQuery('#previous').fadeIn();
+						jQuery('#next').fadeIn();
+						jQuery('.actions-toolbar button').css("display","none");
+					}
+				});
+
+			});
+	//==================Previous Button Code=========================//
+				//alert(currentQuestion);
+					jQuery('#previous').click(function(){
+						jQuery('.actions-toolbar button').css("display","none");
+						jQuery('#msg-thats-it').html("");
+						jQuery(questions.get(currentQuestion)).fadeOut(function(){
+							currentQuestion = currentQuestion - 1;
+							//alert(currentQuestion);
+							if(currentQuestion == 0){
+								//jQuery('#previous').attr('disabled',true);
+								jQuery('#previous').fadeOut();
+								jQuery(questions.get(currentQuestion)).fadeIn();
+								
+							}else{
+								jQuery(questions.get(currentQuestion)).fadeIn();
+							}
+						});
+							if(currentQuestion == totalQuestions){
+								jQuery('#next').fadeIn();
+								currentQuestion = currentQuestion - 1;
+								jQuery(questions.get(currentQuestion)).fadeIn();
+							}
+
+					});
+				});
+			});
+	
+	function myradio(){
+		jQuery('#next').prop('disabled', this.value == "" ? true : false); 
+		jQuery('input:not(:checked)').removeClass("active");
+        jQuery('input:checked').addClass("active");
+	} 
+	
+</script>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Allin_ZipCode::parent" title="ZipCode" module="Allin_ZipCode" sortOrder="100" resource="Allin_ZipCode::parent"/>
+		<add id="Allin_ZipCode::zipcode" title="Allin ZipCode" module="Allin_ZipCode" sortOrder="20" parent="Allin_ZipCode::parent" action="zipcode/zipcode" resource="Allin_ZipCode::zipcode"/>
+
+    </menu>
+</config>
