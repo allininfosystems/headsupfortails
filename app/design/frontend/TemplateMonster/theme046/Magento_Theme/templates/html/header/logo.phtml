@@ -383,3 +383,28 @@ require(['jquery'], function () {
 
 		
 </script>
+
+
+<script type="text/javascript">
+	// =================Events Page Slider=======================//
+
+    require(['jquery', 'OwlCarousel'], function () {
+        jQuery(document).ready(function () {
+            jQuery(".events-slider").owlCarousel({
+				items: 1,
+				//margin:10,
+                itemsDesktop: [1367, 1],
+                itemsDesktopSmall: [1024, 1],
+                itemsTablet: [768, 1],
+                itemsTabletSmall: [479, 1],
+                pagination: true,
+				//nav:true,
+				autoPlay:true,
+				loop:true,
+               // navigation:true
+			});
+        });
+	});
+
+		
+</script>

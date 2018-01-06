@@ -52,3 +52,7 @@ git add pub
 git commit -m 'pub folder'
 history
 git push -u origin master
+pwd
+ls
+ll
+mysqldump -u headsupfourtails -p headsupfourtails > 5Jan.sql

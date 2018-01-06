@@ -62,6 +62,20 @@ form#career-form{ width: 100%; }
 .category-birthday-club .sj-pet-info{width: 100%;}
 
 
+
+/***********************************press-releases-content_page****************************************/
+.press-releases-content .banner-img h2{ font-size: 13px !important;padding: 5px !important; }
+.press-releases-content .below-banner .below-banner-content .bgp{padding: 20px 0 20px !important;font-size: 14px !important;line-height: 24px !important;}
+.press-releases-content .post-content .post-img{width: 100% !important;margin: 0 0 10px !important;padding: 15px !important;}
+.press-releases-content .post-content .post-detail {width: 100% !important;padding: 0 15px !important;text-align: center !important;}
+.press-releases-content .post-content .post-detail h3.topic-head{font-size: 18px !important;line-height: 22px;}
+.press-releases-content .post-content .post-detail p.topic-posted{font-size: 14px !important;text-align: center; padding: 0 !important;}
+.press-releases-content .post-content .post-detail p.topic-posted-detail{ text-align: center;}
+.press-releases-content .post-content .post-detail p.read-more{ text-align: center; }
+
+
+
+
 /************END***********/
 }
 
@@ -81,6 +95,20 @@ form#career-form{ width: 100%; }
 .category-birthday-club .column.main p img{margin: 20px 0 10px !important;}
 .category-birthday-club .sj-bithday-merchandise{ width: 100%;}
 .category-birthday-club .sj-pet-info{width: 100%;}
+
+
+
+/***********************************press-releases-content_page****************************************/
+.press-releases-content .banner-img h2{ font-size: 18px !important;padding: 5px !important; }
+.press-releases-content .below-banner .below-banner-content .bgp{padding: 20px 0 20px !important;font-size: 14px !important;line-height: 24px !important;}
+.press-releases-content .post-content .post-img{width: 100% !important;text-align: center;margin: 0 0 10px !important;padding: 15px !important;}
+.press-releases-content .post-content .post-detail {width: 100% !important;padding: 0 15px !important;text-align: center !important;}
+.press-releases-content .post-content .post-detail h3.topic-head{line-height: 22px;}
+.press-releases-content .post-content .post-detail p.topic-posted{text-align: center; padding: 0 !important;font-size: 19px !important;}
+.press-releases-content .post-content .post-detail p.topic-posted-detail{ text-align: center;}
+.press-releases-content .post-content .post-detail p.read-more{ text-align: center; }
+
+
 /************END***********/
 }
 
@@ -100,6 +128,15 @@ form#career-form{ width: 100%; }
 .breadcrumbs{ margin: 11% auto 0;}
 
 
+/***********************************press-releases-content_page****************************************/
+.press-releases-content .post-content .post-img{  margin-right: 10px !important;  padding-top: 30px; }
+.press-releases-content .post-content{float: left !important;margin: 5px auto !important;}
+.press-releases-content .post-content .post-detail h3.topic-head{line-height: 22px;font-size: 18px !important;}
+.press-releases-content .post-content .post-detail p.topic-posted{padding: 0 !important;}
+.press-releases-content .post-content .post-detail p.topic-posted-detail {line-height: 18px !important;}
+.press-releases-content .banner-img h2{ font-size: 22px !important; }
+
+
 /************END***********/
 }
 
@@ -109,8 +146,30 @@ form#career-form{ width: 100%; }
 /*******birthday-club********/
 .cms-birthday-club .sj-bithday-merchandise ul li{ min-height: 225px; }
 
+
+/***********************************press-releases-content_page****************************************/
+.press-releases-content .post-content .post-img{  margin-right: 12px !important;  padding-top: 30px; }
+.press-releases-content .post-content{float: left !important;margin: 5px auto !important;}
+.press-releases-content .post-content .post-detail h3.topic-head{line-height: 22px;font-size: 18px !important;}
+.press-releases-content .post-content .post-detail p.topic-posted{padding: 0 !important;}
+
+
 /************END***********/
 }
+
+@media (max-width:1023px) and (min-width: 900px){
+/****************Start****************/
+
+/***********************************press-releases-content_page****************************************/
+.press-releases-content .post-content .post-img{  margin-right: 12px !important;  padding-top: 30px; }
+.press-releases-content .post-content{float: left !important;margin: 5px auto !important;}
+.press-releases-content .post-content .post-detail h3.topic-head{line-height: 22px;font-size: 18px !important;}
+.press-releases-content .post-content .post-detail p.topic-posted{padding: 0 !important;}
+
+
+/************END***********/
+}
+
 
 
 #show-more-less{background: #f59353;  padding: 5px 10px; color: #fff; font-weight: 600; margin: 0 auto; display: inherit;}
@@ -185,3 +244,34 @@ v .sj-pet-info form .sj-send{width: auto;background: #f59353; color: #fff; text-
 .press-releases-content .post-content .post-detail p.read-more button.button-read-more{ background: #f59353;padding: 2px 0;border-radius: 6px;border-radius: 6px;}
 .press-releases-content .post-content .post-detail p.read-more button.button-read-more a{ color: #fff !important; font-size: 14px;padding: 2px 10px;display: block;}
 .press-releases-content .post-content .post-detail p.read-more button.button-read-more a:hover{ color: #333 !important; }
+
+
+
+
+
+
+/***********************************stores_page****************************************/
+.cms-stores .columns.container{padding: 0;}
+.sj-inner-container .owl-theme .owl-controls{float: right;width: 100%;margin-bottom: 47px;margin-top: 40px;padding-bottom: 40px;border-bottom: 1px solid #f59353; }
+.sj-inner-container .owl-theme .owl-controls .owl-pagination{text-align: right;}
+.storeNew-backimg{float: left;width: 100%;margin: 0;padding: 0;background: url("../images/body-bg-main.jpg")top center no-repeat;
+    padding: 0 10px;background-size: cover; margin-bottom: 8px;background-attachment: fixed;}
+.storeNew-backimg .sj-bk-img{max-width: 1284px; background: #fff;padding: 0 8%;width: 100%;margin: 30px auto;}
+.storeNew-backimg .sj-str-img {width: 100%;float: left;text-align: center;padding-bottom: 35px;margin-top: 20px;}
+.storeNew-backimg .sj-str-img h2{ margin-top: 20px; font-size: 25px;line-height: 20px; }
+.storeNew-backimg .sj-str-img p{ border-bottom: 1px solid #f59353;padding-bottom: 20px;font-size: 14px;text-align: center !important;width: 70%;float: none;line-height: 27px !important;padding-top: 30px;display: inline-block;}
+.storeNew-backimg .sj-address{width: 100%;float: left;}
+.storeNew-backimg .sj-address ul.store-info{width: 100%;float: left;padding: 0;margin: 0;list-style: none; text-align: center;}
+.storeNew-backimg .sj-address ul.store-info li{float: none; width: 30%;margin: 0 45px 40px 0px;display: inline-block;}
+.storeNew-backimg .sj-address ul.store-info li:nth-child(3n){ margin-right: 0; }
+.storeNew-backimg .sj-address ul.store-info li .cover-innerli{width: 100%;float: left;padding: 50px 40px 10px 0;}
+.cover-innerli h3 {font-size: 15px;margin-bottom: 15px;color: #000;font-weight: 600;margin-top: 0;font-family: 'GothamBook' !important;}
+.cover-innerli p{font-weight: 400;font-size: 12px;line-height: 20px !important;width: 100%;float: left;margin-bottom: 0;letter-spacing: 0;color: #211f1f;font-family: 'GothamBook' !important;}
+.cover-innerli p a{ color: #f59353; }
+.storeNew-backimg .sj-stockist{width: 100%;float: left;margin: 90px 0 70px;text-align: center;}
+.storeNew-backimg .sj-stockist img{ margin: 10px auto; float: none;width: 30px; }
+.storeNew-backimg .line{width: 100%;height: 1px;background: #f59353;float: left;}
+.storeNew-backimg .sj-stockist p{font-size: 14px;width: 60%;text-align: center !important;margin: 50px auto 0;}
+.storeNew-backimg .sj-stockist h2{font-size: 22px;margin-top: 10px;}
+
+

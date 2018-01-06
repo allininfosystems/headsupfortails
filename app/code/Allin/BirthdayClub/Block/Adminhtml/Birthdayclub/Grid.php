@@ -171,6 +171,40 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 					]
 				);
 					
+				
+               $this->addColumn(
+					'pet_type_dog_cat_3nd',
+					[
+						'header' => __('Pet Type (Dog/Cat)'),
+						'index' => 'pet_type_dog_cat_3nd',
+					]
+				);
+				
+				$this->addColumn(
+					'pet_name_3nd',
+					[
+						'header' => __('Pet Name'),
+						'index' => 'pet_name_3nd',
+					]
+				);
+				
+				$this->addColumn(
+					'pet_breed_3nd',
+					[
+						'header' => __('Pet Breed'),
+						'index' => 'pet_breed_3nd',
+					]
+				);
+				
+				$this->addColumn(
+					'pet_birthday_3nd',
+					[
+						'header' => __('Pet Birthday'),
+						'index' => 'pet_birthday_3nd',
+						'type'      => 'datetime',
+					]
+				);
+				
 					
 
 
